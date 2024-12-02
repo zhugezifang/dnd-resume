@@ -32,6 +32,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -64,7 +65,51 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .print-wrapper {
+    flex-basis: 900px;
+    padding: 20px;
+    overflow: auto;
+    scrollbar-width: thin;
+    background: repeating-linear-gradient(
+      to bottom,
+      white,
+      white 1271px,
+      hsl(var(--border)) 1273px
+    );
+    @media print {
+      background: unset;
+    }
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .scroll-thin {
+    scrollbar-width: thin;
+  }
+}
+
+@media print {
+  @page {
+    size: 900px 1273px;
+    margin: 0;
   }
 }

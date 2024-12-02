@@ -1,3 +1,5 @@
+const { addIconSelectors } = require('@iconify/tailwind')
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
@@ -53,5 +55,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [addIconSelectors(['ri']), require('tailwindcss-animate')],
 }
