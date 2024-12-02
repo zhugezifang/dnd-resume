@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Reorder } from 'motion/react'
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
 import { usePageStore } from '@/store/page-store.ts'
-import { WidgetItem } from '@/components/widgets/widget-item.tsx'
+import { ReorderItem } from '@/pages/edit/reorder-item.tsx'
 import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
 import type { WidgetType } from '@/components/widgets/widgets-util.ts'
 
@@ -62,15 +62,11 @@ const DropPanel = () => {
         onReorder={updateWidgets}
       >
         {widgets.map(item => (
-          <Reorder.Item
+          <ReorderItem
             key={item.id}
-            value={item}
-          >
-            <WidgetItem
-              ref={el => (widgetsRef.current[item.id] = el!)}
-              {...item}
-            />
-          </Reorder.Item>
+            ref={el => (widgetsRef.current[item.id] = el!)}
+            item={item}
+          />
         ))}
       </Reorder.Group>
     </div>
