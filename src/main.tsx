@@ -1,14 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router'
-import './index.css'
-import App from './app.tsx'
 import { PageEdit } from '@/pages/edit'
 import { PagePreview } from '@/pages/preview'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Route, Routes } from 'react-router'
+import './index.css'
+import App from './app.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="dnd-resume">
       <Routes>
         <Route
           path="/"

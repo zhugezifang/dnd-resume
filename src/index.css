@@ -4,10 +4,11 @@
 
 @layer base {
   :root {
+    font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 240 3.7% 15.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
@@ -74,18 +75,18 @@
 @layer components {
   .print-wrapper {
     flex-basis: 900px;
-    padding: 20px;
+    padding: 16px;
     overflow: auto;
     scrollbar-width: thin;
-    background: repeating-linear-gradient(
-      to bottom,
-      white,
-      white 1271px,
-      hsl(var(--border)) 1273px
-    );
-    @media print {
-      background: unset;
-    }
+  }
+
+  .form-label {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    margin-top: 16px;
   }
 }
 
@@ -104,12 +105,5 @@
 
   .scroll-thin {
     scrollbar-width: thin;
-  }
-}
-
-@media print {
-  @page {
-    size: 900px 1273px;
-    margin: 0;
   }
 }

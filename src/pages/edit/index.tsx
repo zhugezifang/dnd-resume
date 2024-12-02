@@ -1,7 +1,7 @@
-import { EditHeader } from '@/pages/edit/header.tsx'
 import { DropPanel } from '@/pages/edit/drop-panel.tsx'
-import { WidgetPanel } from '@/pages/edit/widget-panel.tsx'
+import { EditHeader } from '@/pages/edit/header.tsx'
 import { OptionPanel } from '@/pages/edit/option-panel.tsx'
+import { WidgetPanel } from '@/pages/edit/widget-panel.tsx'
 
 const PageEdit = () => {
   return (
@@ -17,7 +17,7 @@ const PageEdit = () => {
           <DropPanel />
         </div>
         {/* right option panel */}
-        <div className="scroll-thin h-full w-[268px] flex-shrink-0 overflow-y-auto border-l">
+        <div className="scroll-thin h-full w-[281px] flex-shrink-0 overflow-y-auto border-l 2xl:w-[321px]">
           <OptionPanel />
         </div>
       </div>

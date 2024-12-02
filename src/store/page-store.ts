@@ -1,18 +1,56 @@
-import { create } from 'zustand'
-import { storage } from '@/lib/utils.ts'
+import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import type { WidgetNode } from '@/components/widgets/widgets-util.ts'
+import { storage } from '@/lib/utils.ts'
+import { create } from 'zustand'
 
 interface PageState {
   widgets: WidgetNode[]
-  pushWidget: (widget: WidgetNode) => void
+  selectedId: string | null
+  selectedWidget: () => WidgetNode | null
+
+  addWidget: (widget: WidgetNode) => void
+  removeWidget: (id: string) => void
   updateWidgets: (widgets: WidgetNode[]) => void
+  resetWidgets: () => void
+  setSelectedId: (id: string) => void
 }
 
-const usePageStore = create<PageState>()(set => {
+const usePageStore = create<PageState>()((set, get) => {
   return {
-    widgets: storage.get('WIDGETS') || [],
-    pushWidget: (widget: WidgetNode) => set(({ widgets }) => ({ widgets: [...widgets, widget] })),
-    updateWidgets: (widgets: WidgetNode[]) => set({ widgets }),
+    widgets: widgetsSchema.safeParse(storage.get('WIDGETS')).data || [],
+    selectedId: null,
+    selectedWidget: () => {
+      const { widgets, selectedId } = get()
+      return widgets.find(item => item.id === selectedId) || null
+    },
+
+    addWidget: (widget: WidgetNode) => {
+      set(({ widgets }) => {
+        const newWidgets = [...widgets, widget]
+        storage.set('WIDGETS', newWidgets)
+        return {
+          widgets: newWidgets,
+        }
+      })
+    },
+    removeWidget: (id: string) => {
+      set(({ widgets }) => {
+        const newWidgets = widgets.filter(widget => widget.id !== id)
+        storage.set('WIDGETS', newWidgets)
+        return {
+          widgets: newWidgets,
+        }
+      })
+    },
+    updateWidgets: (widgets: WidgetNode[]) => {
+      set({ widgets })
+      storage.set('WIDGETS', widgets)
+    },
+    resetWidgets: () => {
+      set({ widgets: [] })
+      storage.remove('WIDGETS')
+    },
+    setSelectedId: (id: string) => set({ selectedId: id }),
   }
 })
 

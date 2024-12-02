@@ -9,6 +9,7 @@ import type { WidgetType } from '@/components/widgets/widgets-util.ts'
 const DropPanel = () => {
   const widgets = usePageStore(state => state.widgets)
   const updateWidgets = usePageStore(state => state.updateWidgets)
+  const setSelectedId = usePageStore(state => state.setSelectedId)
 
   const dropRef = useRef<HTMLDivElement | null>(null)
   const widgetsRef = useRef<{ [id: string]: HTMLDivElement }>({})
@@ -47,9 +48,10 @@ const DropPanel = () => {
         const _widgets = [...widgets]
         _widgets.splice(index, 0, newNode)
         updateWidgets(_widgets)
+        setSelectedId(newNode.id)
       },
     })
-  }, [widgets, updateWidgets])
+  }, [widgets, updateWidgets, setSelectedId])
 
   return (
     <div

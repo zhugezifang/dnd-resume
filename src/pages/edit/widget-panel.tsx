@@ -1,47 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
-import { clsx } from 'clsx'
-import { usePageStore } from '@/store/page-store.ts'
 import { Button } from '@/components/ui/button.tsx'
-import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
-import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
 import type { WidgetType } from '@/components/widgets/widgets-util.ts'
-
-const widgetButtonsData: Array<{
-  type: WidgetType
-  icon: string
-  title: string
-}> = [
-  {
-    type: 'BasicInfo',
-    icon: 'iconify ri--user-3-line',
-    title: '基本信息',
-  },
-  {
-    type: 'TitleSection',
-    icon: 'iconify ri--heading',
-    title: '标题',
-  },
-  {
-    type: 'ExperienceTime',
-    icon: 'iconify ri--calendar-todo-line',
-    title: '经历',
-  },
-  {
-    type: 'TextContent',
-    icon: 'iconify ri--ai-generate-text',
-    title: '文本内容',
-  },
-  {
-    type: 'ImageSection',
-    icon: 'iconify ri--image-line',
-    title: '图片',
-  },
-]
+import { createWidgetsNode, widgetsDisplayInfo } from '@/components/widgets/widgets-util.ts'
+import { usePageStore } from '@/store/page-store.ts'
+import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
+import { clsx } from 'clsx'
+import { useEffect, useRef, useState } from 'react'
 
 const WidgetPanel = () => {
   // click to push widget
-  const pushWidget = usePageStore(state => state.pushWidget)
-  const handleClick = (type: WidgetType) => pushWidget(createWidgetsNode(type))
+  const addWidget = usePageStore(state => state.addWidget)
+  const setSelectedId = usePageStore(state => state.setSelectedId)
+  const handleClick = (type: WidgetType) => {
+    const newWidget = createWidgetsNode(type)
+    addWidget(newWidget)
+    setSelectedId(newWidget.id)
+  }
 
   const dragRefs = useRef<Array<HTMLButtonElement | null>>([])
   const [draggingWidgetType, setDraggingWidgetType] = useState('')
@@ -49,7 +22,7 @@ const WidgetPanel = () => {
   useEffect(() => {
     const cleanUpFns: Array<() => void> = []
     dragRefs.current.forEach((el, index) => {
-      const type = widgetButtonsData[index].type
+      const type = widgetsDisplayInfo[index].type
       cleanUpFns.push(
         draggable({
           element: el!,
@@ -64,7 +37,7 @@ const WidgetPanel = () => {
 
   return (
     <ul className="flex w-full flex-col p-4">
-      {widgetButtonsData.map((item, index) => (
+      {widgetsDisplayInfo.map((item, index) => (
         <li
           className="mb-3 flex-grow"
           key={item.type}

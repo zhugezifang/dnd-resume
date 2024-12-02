@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
-import { animate, useMotionValue } from 'motion/react'
 import type { MotionValue } from 'motion/react'
+import { animate, useMotionValue } from 'motion/react'
+import { useEffect } from 'react'
 
-const inactiveShadow = '0px 0px 0px rgba(0,0,0,0.8)'
-const activeShadow = '5px 5px 10px rgba(0,0,0,0.3)'
+const inactiveShadow = '0px 0px 0px 2px rgba(0,0,0,0.8)'
+const activeShadow = '0px 4px 12px 2px rgba(0,0,0,0.4)'
 const inactiveScale = 1
 const activeScale = 1.02
 const duration = 0.2
