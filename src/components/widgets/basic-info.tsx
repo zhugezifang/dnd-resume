@@ -1,4 +1,4 @@
-import { linkIconsMap } from '@/components/common/link-icons.tsx'
+import { LinkIconComponent } from '@/components/common/link-icons.tsx'
 import type { BasicInfoData } from '@/components/widgets/widgets-util.ts'
 import { clsx } from 'clsx'
 
@@ -38,9 +38,7 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
                     className="mr-4 flex h-8 min-w-40 items-center"
                   >
                     {/* link icon */}
-                    <span className="flex-center mr-2">
-                      {linkIconsMap[item.icon]({ width: '1em', height: '1em' })}
-                    </span>
+                    <span className="flex-center mr-2">{LinkIconComponent(item.icon)}</span>
                     {/* link content */}
                     <a
                       href={item.href || undefined}

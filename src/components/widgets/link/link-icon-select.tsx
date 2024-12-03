@@ -1,4 +1,4 @@
-import { linkIconsMap } from '@/components/common/link-icons.tsx'
+import { LinkIconComponent, linkIconNames } from '@/components/common/link-icons.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover.tsx'
 
@@ -9,8 +9,6 @@ interface LinkIconSelectProps {
 }
 
 const LinkIconSelect = ({ value, onChange, className }: LinkIconSelectProps) => {
-  const iconNames = Object.keys(linkIconsMap)
-
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -19,7 +17,7 @@ const LinkIconSelect = ({ value, onChange, className }: LinkIconSelectProps) => 
           variant="outline"
           size="icon"
         >
-          {linkIconsMap[value]?.({ width: '1em', height: '1em' })}
+          {LinkIconComponent(value)}
         </Button>
       </PopoverTrigger>
       <PopoverContent
@@ -27,7 +25,7 @@ const LinkIconSelect = ({ value, onChange, className }: LinkIconSelectProps) => 
         align="start"
       >
         <div className="flex flex-wrap justify-between">
-          {iconNames.map(item => (
+          {linkIconNames.map(item => (
             <Button
               key={item}
               variant="outline"
@@ -35,7 +33,7 @@ const LinkIconSelect = ({ value, onChange, className }: LinkIconSelectProps) => 
               className="mb-2"
               onClick={() => onChange(item)}
             >
-              {linkIconsMap[item]({ width: '1em', height: '1em' })}
+              {LinkIconComponent(item)}
             </Button>
           ))}
         </div>

@@ -46,11 +46,6 @@ for (const widgetInfo of widgetsDisplayInfo) {
 
 export type WidgetNode =
   | {
-      type: WidgetType
-      id: string
-      data: any
-    }
-  | {
       type: 'BasicInfo'
       id: string
       data: BasicInfoData

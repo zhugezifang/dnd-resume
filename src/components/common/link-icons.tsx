@@ -1,5 +1,4 @@
 import type { SVGProps } from 'react'
-import type { JSX } from 'react/jsx-runtime'
 
 export function RiLinksLine(props?: SVGProps<SVGSVGElement>) {
   return (<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" {...props}><path fill="currentColor" d="m13.06 8.111l1.415 1.414a7 7 0 0 1 0 9.9l-.354.353a7 7 0 1 1-9.9-9.9l1.415 1.415a5 5 0 1 0 7.071 7.071l.354-.354a5 5 0 0 0 0-7.07l-1.415-1.415zm6.718 6.01l-1.414-1.414a5 5 0 0 0-7.071-7.07l-.354.353a5 5 0 0 0 0 7.07l1.415 1.415l-1.415 1.414l-1.414-1.414a7 7 0 0 1 0-9.9l.354-.353a7 7 0 1 1 9.9 9.9"></path></svg>);
@@ -33,15 +32,37 @@ export function LogosGoogleGmail(props?: SVGProps<SVGSVGElement>) {
   return (<svg xmlns="http://www.w3.org/2000/svg" width={256} height={193} viewBox="0 0 256 193" {...props}><path fill="#4285f4" d="M58.182 192.05V93.14L27.507 65.077L0 49.504v125.091c0 9.658 7.825 17.455 17.455 17.455z"></path><path fill="#34a853" d="M197.818 192.05h40.727c9.659 0 17.455-7.826 17.455-17.455V49.505l-31.156 17.837l-27.026 25.798z"></path><path fill="#ea4335" d="m58.182 93.14l-4.174-38.647l4.174-36.989L128 69.868l69.818-52.364l4.669 34.992l-4.669 40.644L128 145.504z"></path><path fill="#fbbc04" d="M197.818 17.504V93.14L256 49.504V26.231c0-21.585-24.64-33.89-41.89-20.945z"></path><path fill="#c5221f" d="m0 49.504l26.759 20.07L58.182 93.14V17.504L41.89 5.286C24.61-7.66 0 4.646 0 26.23z"></path></svg>);
 }
 
-export const linkIconsMap: {
-  [iconName: string]: (props?: SVGProps<SVGSVGElement>) => JSX.Element
-} = {
-  RiLinksLine,
-  RiUserLocationLine,
-  MynauiCake,
-  MynauiTelephoneCall,
-  LogosGithubIcon,
-  SimpleIconsJuejin,
-  AntDesignMailOutlined,
-  LogosGoogleGmail,
+export const linkIconNames = [
+  'RiLinksLine',
+  'RiUserLocationLine',
+  'MynauiCake',
+  'MynauiTelephoneCall',
+  'LogosGithubIcon',
+  'SimpleIconsJuejin',
+  'AntDesignMailOutlined',
+  'LogosGoogleGmail',
+]
+
+export const LinkIconComponent = (icon: string) => {
+  const props = { width: '1em', height: '1em' }
+  switch (icon) {
+    case 'RiLinksLine':
+      return <RiLinksLine {...props} />
+    case 'RiUserLocationLine':
+      return <RiUserLocationLine {...props} />
+    case 'MynauiCake':
+      return <MynauiCake {...props} />
+    case 'MynauiTelephoneCall':
+      return <MynauiTelephoneCall {...props} />
+    case 'LogosGithubIcon':
+      return <LogosGithubIcon {...props} />
+    case 'SimpleIconsJuejin':
+      return <SimpleIconsJuejin {...props} />
+    case 'AntDesignMailOutlined':
+      return <AntDesignMailOutlined {...props} />
+    case 'LogosGoogleGmail':
+      return <LogosGoogleGmail {...props} />
+    default:
+      return null;
+  }
 }

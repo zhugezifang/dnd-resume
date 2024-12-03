@@ -12,14 +12,6 @@ import { Reorder, useMotionValue } from 'motion/react'
 import type { MouseEvent } from 'react'
 import { forwardRef, useState } from 'react'
 
-const widgetsRenderMap = {
-  BasicInfo,
-  TitleSection,
-  ExperienceTime,
-  TextContent,
-  ImageSection,
-}
-
 const ReorderItem = forwardRef<HTMLDivElement, { item: WidgetNode }>(({ item }, ref) => {
   // motion style
   const y = useMotionValue(0)
@@ -38,6 +30,21 @@ const ReorderItem = forwardRef<HTMLDivElement, { item: WidgetNode }>(({ item }, 
     removeWidget(item.id)
   }
 
+  const WidgetRenderComponent = () => {
+    switch (item.type) {
+      case 'BasicInfo':
+        return <BasicInfo data={item.data} />
+      case 'TitleSection':
+        return <TitleSection data={item.data} />
+      case 'ExperienceTime':
+        return <ExperienceTime data={item.data} />
+      case 'TextContent':
+        return <TextContent data={item.data} />
+      case 'ImageSection':
+        return <ImageSection data={item.data} />
+    }
+  }
+
   return (
     <Reorder.Item
       value={item}
@@ -52,7 +59,7 @@ const ReorderItem = forwardRef<HTMLDivElement, { item: WidgetNode }>(({ item }, 
         onMouseEnter={() => setIsMouseEnter(true)}
         onMouseLeave={() => setIsMouseEnter(false)}
       >
-        {widgetsRenderMap[item.type]({ data: item.data })}
+        {WidgetRenderComponent()}
 
         {isMouseEnter && (
           <Button
