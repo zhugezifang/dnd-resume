@@ -25,8 +25,18 @@ const usePageStore = create<PageState>()((set, get) => {
     },
 
     addWidget: (widget: WidgetNode) => {
-      set(({ widgets }) => {
-        const newWidgets = [...widgets, widget]
+      set(({ selectedId, widgets }) => {
+        const newWidgets = [...widgets]
+        if (!selectedId) {
+          newWidgets.push(widget)
+        } else {
+          const index = widgets.findIndex(item => item.id === selectedId)
+          if (index === -1) {
+            newWidgets.push(widget)
+          } else {
+            newWidgets.splice(index + 1, 0, widget)
+          }
+        }
         storage.set('WIDGETS', newWidgets)
         return {
           widgets: newWidgets,
@@ -35,10 +45,18 @@ const usePageStore = create<PageState>()((set, get) => {
     },
     removeWidget: (id: string) => {
       set(({ widgets }) => {
+        const index = widgets.findIndex(item => item.id === id)
         const newWidgets = widgets.filter(widget => widget.id !== id)
+        const selectedId =
+          newWidgets.length > index
+            ? newWidgets[index].id // 聚焦到下一个
+            : newWidgets.length === index
+              ? newWidgets[index - 1].id // 删除的是最后一个
+              : null
         storage.set('WIDGETS', newWidgets)
         return {
           widgets: newWidgets,
+          selectedId,
         }
       })
     },
@@ -47,7 +65,7 @@ const usePageStore = create<PageState>()((set, get) => {
       storage.set('WIDGETS', widgets)
     },
     resetWidgets: () => {
-      set({ widgets: [] })
+      set({ widgets: [], selectedId: null })
       storage.remove('WIDGETS')
     },
     setSelectedId: (id: string) => set({ selectedId: id }),

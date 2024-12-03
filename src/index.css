@@ -69,6 +69,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-size: 15px;
   }
 }
 
@@ -78,6 +79,7 @@
     padding: 16px;
     overflow: auto;
     scrollbar-width: thin;
+    background: white;
   }
 
   .form-label {

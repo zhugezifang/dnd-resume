@@ -10,7 +10,7 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
   const { avatarUrl, name, jobTitle, linksGroup } = data
 
   return (
-    <div className="flex-center mb-4 py-10">
+    <div className="flex-center mb-10 pb-4 pt-10">
       {/* 头像 */}
       {avatarUrl ? (
         <img

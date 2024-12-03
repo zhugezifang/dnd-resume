@@ -1,6 +1,17 @@
-import type { ChangeEvent } from 'react'
-import { Input } from '@/components/ui/input'
+import { Tiptap } from '@/components/common/tiptap.tsx'
+import { Button } from '@/components/ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 import type { TextContentData } from '@/components/widgets/widgets-util.ts'
+import type { Editor } from '@tiptap/react'
+import { useRef, useState } from 'react'
 
 const TextContentForm = ({
   data,
@@ -9,10 +20,27 @@ const TextContentForm = ({
   data: TextContentData
   onChange: (value: TextContentData) => void
 }) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+  const editor = useRef<Editor | null>(null)
+  const handleEditorCreated = (val: Editor) => {
+    editor.current = val
+  }
 
-    onChange({ ...data, [name]: value })
+  const [content, setContent] = useState('')
+  const [open, setOpen] = useState<boolean>(false)
+  const handleOpenChange = (open: boolean) => {
+    if (open) {
+      setOpen(true)
+      setContent(data.content)
+    } else {
+      setOpen(false)
+      setContent('')
+    }
+  }
+  const handleSave = () => {
+    if (editor.current) {
+      onChange({ ...data, content: editor.current.getHTML() })
+    }
+    handleOpenChange(false)
   }
 
   return (
@@ -22,12 +50,43 @@ const TextContentForm = ({
         <div className="form-label">
           <span>文本内容</span>
         </div>
-        <Input
-          name="content"
-          value={data.content}
-          placeholder="输入文本内容"
-          onChange={handleChange}
-        />
+
+        {/* 编辑富文本 */}
+        <Dialog
+          open={open}
+          onOpenChange={handleOpenChange}
+        >
+          <DialogTrigger asChild>
+            <Button
+              variant="outline"
+              className="w-full"
+            >
+              <span className="iconify ri--edit-line"></span>
+              编辑内容
+            </Button>
+          </DialogTrigger>
+
+          <DialogContent
+            className="min-w-[800px]"
+            onEscapeKeyDown={e => e.preventDefault()}
+          >
+            <DialogHeader>
+              <DialogTitle>文本内容</DialogTitle>
+              <DialogDescription></DialogDescription>
+            </DialogHeader>
+
+            {/* 富文本编辑器 */}
+            <div className="h-[320px]">
+              <Tiptap
+                content={content}
+                onCreate={handleEditorCreated}
+              />
+            </div>
+            <DialogFooter>
+              <Button onClick={handleSave}>保存内容</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   )

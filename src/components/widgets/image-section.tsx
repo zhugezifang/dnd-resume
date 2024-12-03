@@ -8,7 +8,7 @@ const ImageSection = ({ data }: ImageSectionProps) => {
   const { url } = data
 
   return (
-    <div className="flex-center mb-2 min-h-16">
+    <div className="flex-center mb-2 min-h-16 drop-shadow-xl">
       <img
         src={url}
         alt="image"

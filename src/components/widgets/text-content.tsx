@@ -7,7 +7,12 @@ interface TextContentProps {
 const TextContent = ({ data }: TextContentProps) => {
   const { content } = data
 
-  return <div className="mb-2 flex min-h-9 flex-col justify-center">{content}</div>
+  return (
+    <div
+      className="tiptap mb-2 flex min-h-9 flex-col justify-center"
+      dangerouslySetInnerHTML={{ __html: content }}
+    ></div>
+  )
 }
 
 export { TextContent }
