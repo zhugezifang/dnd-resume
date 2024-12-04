@@ -1,5 +1,6 @@
 import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import type { WidgetNode } from '@/components/widgets/widgets-util.ts'
+import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
 import { storage } from '@/lib/utils.ts'
 import { create } from 'zustand'
 
@@ -16,9 +17,19 @@ interface PageState {
 }
 
 const usePageStore = create<PageState>()((set, get) => {
+  let widgets: WidgetNode[] = []
+  const json = storage.get('WIDGETS')
+  if (json) {
+    widgets = widgetsSchema.safeParse(json).data || []
+  } else {
+    // initial data
+    widgets.push(createWidgetsNode('BasicInfo'))
+  }
+  const selectedId = widgets.length ? widgets[0].id : null
+
   return {
-    widgets: widgetsSchema.safeParse(storage.get('WIDGETS')).data || [],
-    selectedId: null,
+    widgets,
+    selectedId,
     selectedWidget: () => {
       const { widgets, selectedId } = get()
       return widgets.find(item => item.id === selectedId) || null
