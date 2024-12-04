@@ -114,18 +114,18 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
           jobTitle: '前端开发工程师',
           linksGroup: [
             [
-              { href: '', content: '1994/11', icon: 'MynauiCake' },
-              { href: '', content: '15123520989', icon: 'MynauiTelephoneCall' },
+              { href: '', content: '2050/01', icon: 'MynauiCake' },
+              { href: '', content: '15123456789', icon: 'MynauiTelephoneCall' },
             ],
             [
               {
-                href: 'https://github.com/Arman19941113',
+                href: 'https://github.com/',
                 content: 'github.com',
                 icon: 'LogosGithubIcon',
               },
               {
-                href: 'mailto:td19941113@gmail.com',
-                content: 'td19941113@gmail.com',
+                href: 'mailto:tanjiro@gmail.com',
+                content: 'tanjiro@gmail.com',
                 icon: 'LogosGoogleGmail',
               },
             ],
@@ -147,7 +147,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         id,
         data: {
           title: '腾讯科技（深圳）有限公司',
-          dateRange: '2077/01 - 至今',
+          dateRange: '2077/07 - 2080/07',
         },
       }
     case 'TextContent':
@@ -155,7 +155,8 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         type: 'TextContent',
         id,
         data: {
-          content: '负责 xxx 业务',
+          content:
+            '<h3><a target="_blank" rel="noopener noreferrer nofollow" href="https://pay.weixin.qq.com/">微信支付</a> - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
         },
       }
     case 'ImageSection':

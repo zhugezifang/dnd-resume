@@ -1,7 +1,18 @@
 {
   "name": "dnd-resume",
   "private": true,
-  "version": "0.0.0",
+  "description": "Create beautiful and modern resume with No-Code",
+  "keywords": [
+    "no code",
+    "drag and drop",
+    "generate resume"
+  ],
+  "homepage": "https://github.com/Arman19941113/dnd-resume#readme",
+  "author": "Arman Tang",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arman19941113/dnd-resume"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

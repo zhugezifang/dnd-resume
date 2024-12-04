@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router'
-import { usePageStore } from '@/store/page-store.ts'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,6 +10,8 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
+import { usePageStore } from '@/store/page-store.ts'
+import { useNavigate } from 'react-router'
 
 const EditHeader = () => {
   const resetWidgets = usePageStore(state => state.resetWidgets)
@@ -43,11 +43,18 @@ const EditHeader = () => {
       </AlertDialog>
       <Button
         variant="outline"
-        className="w-20"
+        className="mr-4 w-20"
         onClick={handleClickPreview}
       >
         预览
       </Button>
+
+      {/* github */}
+      <a
+        href="https://github.com/Arman19941113/dnd-resume"
+        target="_blank"
+        className="iconify text-2xl ri--github-fill"
+      ></a>
     </div>
   )
 }

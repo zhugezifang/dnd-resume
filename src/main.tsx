@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 // @ts-expect-error ignore
 import 'virtual:svg-icons-register'
 import './index.css'
-import App from './app.tsx'
+// import App from './app.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route
           path="/"
-          element={<App />}
+          element={<PageEdit />}
         />
         <Route
           path="/edit"
