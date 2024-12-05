@@ -5,7 +5,6 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/dnd-resume',
   css: {
     modules: {
       localsConvention: 'camelCaseOnly',

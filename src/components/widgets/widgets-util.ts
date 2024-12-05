@@ -109,7 +109,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         type: 'BasicInfo',
         id,
         data: {
-          avatarUrl: '/dnd-resume/avatar.jpg',
+          avatarUrl: '/avatar.jpg',
           name: '炭治郎',
           jobTitle: '前端开发工程师',
           linksGroup: [
@@ -164,7 +164,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         type: 'ImageSection',
         id,
         data: {
-          url: '/dnd-resume/image.png',
+          url: '/image.png',
         },
       }
     default: {

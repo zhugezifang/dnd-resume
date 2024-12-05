@@ -10,7 +10,7 @@ import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename="dnd-resume">
+    <BrowserRouter>
       <Routes>
         <Route
           path="/"

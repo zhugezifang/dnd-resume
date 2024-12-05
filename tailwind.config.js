@@ -1,4 +1,5 @@
-const { addIconSelectors } = require('@iconify/tailwind')
+import { addIconSelectors } from '@iconify/tailwind'
+import animate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -55,5 +56,5 @@ export default {
       },
     },
   },
-  plugins: [addIconSelectors(['ri']), require('tailwindcss-animate')],
+  plugins: [addIconSelectors(['ri']), animate],
 }
