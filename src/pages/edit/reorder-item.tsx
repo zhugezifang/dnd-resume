@@ -5,19 +5,13 @@ import { ImageSection } from '@/components/widgets/image-section.tsx'
 import { TextContent } from '@/components/widgets/text-content.tsx'
 import { TitleSection } from '@/components/widgets/title-section.tsx'
 import type { WidgetNode } from '@/components/widgets/widgets-util.ts'
-import { useRaisedStyle } from '@/hooks/use-raised-style.ts'
 import { usePageStore } from '@/store/page-store.ts'
 import { clsx } from 'clsx'
-import { Reorder, useMotionValue } from 'motion/react'
+import { Reorder } from 'motion/react'
 import type { MouseEvent } from 'react'
 import { forwardRef, useState } from 'react'
 
 const ReorderItem = forwardRef<HTMLDivElement, { item: WidgetNode }>(({ item }, ref) => {
-  // motion style
-  const y = useMotionValue(0)
-  const { scale } = useRaisedStyle(y)
-  const style = { y, scale }
-
   const setSelectedId = usePageStore(state => state.setSelectedId)
   const selectedId = usePageStore(state => state.selectedId)
   const selectedCls = selectedId === item.id ? 'shadow-[0_4px_12px_2px_rgba(223,84,74,0.6)]' : ''
@@ -48,8 +42,8 @@ const ReorderItem = forwardRef<HTMLDivElement, { item: WidgetNode }>(({ item }, 
   return (
     <Reorder.Item
       value={item}
-      style={style}
-      whileHover={{ boxShadow: '0px 4px 12px 2px rgba(219,99,39,0.6)', zIndex: 10 }}
+      whileHover={{ boxShadow: '0px 4px 12px 2px rgba(219,99,39,0.6)' }}
+      whileDrag={{ scale: 1.02, zIndex: 10 }}
       className="relative bg-white"
     >
       <div
