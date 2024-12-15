@@ -1,4 +1,4 @@
-import type { ExperienceTimeData } from '@/components/widgets/widgets-util.ts'
+import type { ExperienceTimeData } from '@/components/widgets/widgets-type.d.ts'
 
 interface ExperienceTimeProps {
   data: ExperienceTimeData

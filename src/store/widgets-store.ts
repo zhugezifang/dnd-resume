@@ -1,5 +1,5 @@
 import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
-import type { WidgetNode } from '@/components/widgets/widgets-util.ts'
+import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
 import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
 import { storage } from '@/lib/utils.ts'
 import { create } from 'zustand'
@@ -11,12 +11,12 @@ interface PageState {
 
   addWidget: (widget: WidgetNode) => void
   removeWidget: (id: string) => void
-  updateWidgets: (widgets: WidgetNode[]) => void
+  setWidgets: (widgets: WidgetNode[]) => void
   resetWidgets: () => void
   setSelectedId: (id: string) => void
 }
 
-const usePageStore = create<PageState>()((set, get) => {
+const useWidgetsStore = create<PageState>()((set, get) => {
   let widgets: WidgetNode[] = []
   const json = storage.get('WIDGETS')
   if (json) {
@@ -51,6 +51,7 @@ const usePageStore = create<PageState>()((set, get) => {
         storage.set('WIDGETS', newWidgets)
         return {
           widgets: newWidgets,
+          selectedId: widget.id,
         }
       })
     },
@@ -71,7 +72,7 @@ const usePageStore = create<PageState>()((set, get) => {
         }
       })
     },
-    updateWidgets: (widgets: WidgetNode[]) => {
+    setWidgets: (widgets: WidgetNode[]) => {
       set({ widgets })
       storage.set('WIDGETS', widgets)
     },
@@ -83,4 +84,4 @@ const usePageStore = create<PageState>()((set, get) => {
   }
 })
 
-export { usePageStore }
+export { useWidgetsStore }

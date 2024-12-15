@@ -1,10 +1,10 @@
-import { TiptapMenu } from '@/components/common/tiptap-memu.tsx'
+import { TiptapMenu } from '@/components/tiptap/tiptap-memu.tsx'
 import Link from '@tiptap/extension-link'
 import type { Editor } from '@tiptap/react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import type { MouseEvent } from 'react'
-import '@/styles/tiptap.css'
+import '@/components/tiptap/tiptap.css'
 
 const extensions = [StarterKit, Link]
 
@@ -13,7 +13,7 @@ interface TiptapProps {
   onCreate: (editor: Editor) => void
 }
 
-const Tiptap = ({ content, onCreate }: TiptapProps) => {
+const TiptapEditor = ({ content, onCreate }: TiptapProps) => {
   const editor = useEditor({
     extensions,
     content,
@@ -44,4 +44,4 @@ const Tiptap = ({ content, onCreate }: TiptapProps) => {
   )
 }
 
-export { Tiptap }
+export { TiptapEditor }

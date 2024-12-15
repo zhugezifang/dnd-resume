@@ -1,4 +1,4 @@
-import type { ImageSectionData } from '@/components/widgets/widgets-util.ts'
+import type { ImageSectionData } from '@/components/widgets/widgets-type.d.ts'
 
 interface ImageSectionProps {
   data: ImageSectionData

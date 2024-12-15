@@ -1,13 +1,13 @@
-import { BasicInfo } from '@/components/widgets/basic-info.tsx'
-import { ExperienceTime } from '@/components/widgets/experience-time.tsx'
-import { ImageSection } from '@/components/widgets/image-section.tsx'
-import { TextContent } from '@/components/widgets/text-content.tsx'
-import { TitleSection } from '@/components/widgets/title-section.tsx'
-import type { WidgetNode } from '@/components/widgets/widgets-util.ts'
-import { usePageStore } from '@/store/page-store.ts'
+import { BasicInfo } from '@/components/widgets/display/basic-info.tsx'
+import { ExperienceTime } from '@/components/widgets/display/experience-time.tsx'
+import { ImageSection } from '@/components/widgets/display/image-section.tsx'
+import { TextContent } from '@/components/widgets/display/text-content.tsx'
+import { TitleSection } from '@/components/widgets/display/title-section.tsx'
+import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
+import { useWidgetsStore } from '@/store/widgets-store.ts'
 
 const PagePreview = () => {
-  const widgets = usePageStore(state => state.widgets)
+  const widgets = useWidgetsStore(state => state.widgets)
   const WidgetRenderComponent = (item: WidgetNode) => {
     switch (item.type) {
       case 'BasicInfo':

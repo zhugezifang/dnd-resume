@@ -1,18 +1,18 @@
-import type { WidgetType } from '@/components/widgets/widgets-util.ts'
+import type { WidgetType } from '@/components/widgets/widgets-type.d.ts'
 import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
 import { useLatest } from '@/hooks/use-latest.ts'
-import { ReorderItem } from '@/pages/edit/reorder-item.tsx'
-import { usePageStore } from '@/store/page-store.ts'
+import { WidgetDisplayItem } from '@/pages/edit/widget-display-item.tsx'
+import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
 import { Reorder } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
-const DropPanel = () => {
-  const { widgets, updateWidgets, selectedId, setSelectedId } = usePageStore(
+const PanelDnd = () => {
+  const { widgets, setWidgets, selectedId, setSelectedId } = useWidgetsStore(
     useShallow(state => ({
       widgets: state.widgets,
-      updateWidgets: state.updateWidgets,
+      setWidgets: state.setWidgets,
       selectedId: state.selectedId,
       setSelectedId: state.setSelectedId,
     })),
@@ -76,12 +76,12 @@ const DropPanel = () => {
         const newNode = createWidgetsNode(type)
         const _widgets = [...widgetsRef.current]
         _widgets.splice(dropIndexRef.current!, 0, newNode)
-        updateWidgets(_widgets)
+        setWidgets(_widgets)
         setSelectedId(newNode.id)
         setDropIndex(null)
       },
     })
-  }, [updateWidgets, setSelectedId, widgetsRef, widgetsLocationRef, selectedIdRef, dropIndexRef])
+  }, [setWidgets, setSelectedId, widgetsRef, widgetsLocationRef, selectedIdRef, dropIndexRef])
 
   return (
     <div
@@ -91,10 +91,10 @@ const DropPanel = () => {
       <Reorder.Group
         axis="y"
         values={widgets}
-        onReorder={updateWidgets}
+        onReorder={setWidgets}
       >
         {widgets.map(item => (
-          <ReorderItem
+          <WidgetDisplayItem
             key={item.id}
             ref={el => (widgetsDomRef.current[item.id] = el!)}
             item={item}
@@ -114,4 +114,4 @@ const DropPanel = () => {
   )
 }
 
-export { DropPanel }
+export { PanelDnd }

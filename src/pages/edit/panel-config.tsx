@@ -1,17 +1,17 @@
-import { BasicInfoForm } from '@/components/widgets/basic-info-form.tsx'
-import { ExperienceTimeForm } from '@/components/widgets/experience-time-form.tsx'
-import { ImageSectionForm } from '@/components/widgets/image-section-form.tsx'
-import { TextContentForm } from '@/components/widgets/text-content-form.tsx'
-import { TitleSectionForm } from '@/components/widgets/title-section-form.tsx'
+import { BasicInfoForm } from '@/components/widgets/form/basic-info-form.tsx'
+import { ExperienceTimeForm } from '@/components/widgets/form/experience-time-form.tsx'
+import { ImageSectionForm } from '@/components/widgets/form/image-section-form.tsx'
+import { TextContentForm } from '@/components/widgets/form/text-content-form.tsx'
+import { TitleSectionForm } from '@/components/widgets/form/title-section-form.tsx'
 import { widgetsDisplayMap } from '@/components/widgets/widgets-util.ts'
-import { usePageStore } from '@/store/page-store.ts'
+import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { clsx } from 'clsx'
 
-const OptionPanel = () => {
-  const widgets = usePageStore(state => state.widgets)
-  const updateWidgets = usePageStore(state => state.updateWidgets)
+const PanelConfig = () => {
+  const widgets = useWidgetsStore(state => state.widgets)
+  const setWidgets = useWidgetsStore(state => state.setWidgets)
 
-  const selectedWidget = usePageStore(state => state.selectedWidget())
+  const selectedWidget = useWidgetsStore(state => state.selectedWidget())
   if (!selectedWidget) return null
 
   const widgetInfo = widgetsDisplayMap[selectedWidget.type]
@@ -23,7 +23,7 @@ const OptionPanel = () => {
       }
       return item
     })
-    updateWidgets(newWidgets)
+    setWidgets(newWidgets)
   }
   const FormComponent = (() => {
     switch (selectedWidget.type) {
@@ -76,4 +76,4 @@ const OptionPanel = () => {
   )
 }
 
-export { OptionPanel }
+export { PanelConfig }

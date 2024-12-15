@@ -10,11 +10,11 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import { usePageStore } from '@/store/page-store.ts'
+import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { useNavigate } from 'react-router'
 
 const EditHeader = () => {
-  const resetWidgets = usePageStore(state => state.resetWidgets)
+  const resetWidgets = useWidgetsStore(state => state.resetWidgets)
   const navigate = useNavigate()
 
   const handleClickPreview = () => navigate('/preview')

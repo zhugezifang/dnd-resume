@@ -1,5 +1,5 @@
-import { PageEdit } from '@/pages/edit'
-import { PagePreview } from '@/pages/preview'
+import { PageEdit } from '@/pages/page-edit.tsx'
+import { PagePreview } from '@/pages/page-preview.tsx'
 // import App from './app.tsx'
 import { Analytics } from '@vercel/analytics/react'
 import { StrictMode } from 'react'

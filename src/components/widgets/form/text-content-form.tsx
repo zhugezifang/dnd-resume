@@ -1,5 +1,5 @@
-import { Tiptap } from '@/components/common/tiptap.tsx'
-import { Button } from '@/components/ui/button'
+import { TiptapEditor } from '@/components/tiptap/tiptap-editor.tsx'
+import { Button } from '@/components/ui/button.tsx'
 import {
   Dialog,
   DialogContent,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import type { TextContentData } from '@/components/widgets/widgets-util.ts'
+} from '@/components/ui/dialog.tsx'
+import type { TextContentData } from '@/components/widgets/widgets-type.d.ts'
 import type { Editor } from '@tiptap/react'
 import { useRef, useState } from 'react'
 
@@ -77,7 +77,7 @@ const TextContentForm = ({
 
             {/* 富文本编辑器 */}
             <div className="h-[320px]">
-              <Tiptap
+              <TiptapEditor
                 content={content}
                 onCreate={handleEditorCreated}
               />

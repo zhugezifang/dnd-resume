@@ -1,11 +1,11 @@
 import { Button } from '@/components/ui/button.tsx'
-import { BasicInfo } from '@/components/widgets/basic-info.tsx'
-import { ExperienceTime } from '@/components/widgets/experience-time.tsx'
-import { ImageSection } from '@/components/widgets/image-section.tsx'
-import { TextContent } from '@/components/widgets/text-content.tsx'
-import { TitleSection } from '@/components/widgets/title-section.tsx'
-import type { WidgetNode } from '@/components/widgets/widgets-util.ts'
-import { usePageStore } from '@/store/page-store.ts'
+import { BasicInfo } from '@/components/widgets/display/basic-info.tsx'
+import { ExperienceTime } from '@/components/widgets/display/experience-time.tsx'
+import { ImageSection } from '@/components/widgets/display/image-section.tsx'
+import { TextContent } from '@/components/widgets/display/text-content.tsx'
+import { TitleSection } from '@/components/widgets/display/title-section.tsx'
+import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
+import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { clsx } from 'clsx'
 import { Reorder } from 'motion/react'
 import type { MouseEvent } from 'react'
@@ -16,14 +16,14 @@ interface ReorderItemProps {
   ref: (el: HTMLDivElement) => void
 }
 
-function ReorderItem({ item, ref }: ReorderItemProps) {
-  const setSelectedId = usePageStore(state => state.setSelectedId)
-  const selectedId = usePageStore(state => state.selectedId)
+function WidgetDisplayItem({ item, ref }: ReorderItemProps) {
+  const setSelectedId = useWidgetsStore(state => state.setSelectedId)
+  const selectedId = useWidgetsStore(state => state.selectedId)
   const selectedCls = selectedId === item.id ? 'shadow-[0_4px_12px_2px_rgba(223,84,74,0.6)]' : ''
 
   // remove widget
   const [isMouseEnter, setIsMouseEnter] = useState(false)
-  const removeWidget = usePageStore(state => state.removeWidget)
+  const removeWidget = useWidgetsStore(state => state.removeWidget)
   const handleClickRemove = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     removeWidget(item.id)
@@ -75,4 +75,4 @@ function ReorderItem({ item, ref }: ReorderItemProps) {
   )
 }
 
-export { ReorderItem }
+export { WidgetDisplayItem }

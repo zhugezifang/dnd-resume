@@ -1,15 +1,9 @@
-export type WidgetType =
-  | 'BasicInfo'
-  | 'TitleSection'
-  | 'ExperienceTime'
-  | 'TextContent'
-  | 'ImageSection'
-
-interface WidgetDisplayInfo {
-  type: WidgetType
-  icon: string
-  title: string
-}
+import type {
+  LinkItem,
+  WidgetDisplayInfo,
+  WidgetNode,
+  WidgetType,
+} from '@/components/widgets/widgets-type.d.ts'
 
 export const widgetsDisplayInfo: WidgetDisplayInfo[] = [
   {
@@ -44,63 +38,6 @@ for (const widgetInfo of widgetsDisplayInfo) {
   widgetsDisplayMap[widgetInfo.type] = widgetInfo
 }
 
-export type WidgetNode =
-  | {
-      type: 'BasicInfo'
-      id: string
-      data: BasicInfoData
-    }
-  | {
-      type: 'TitleSection'
-      id: string
-      data: TitleSectionData
-    }
-  | {
-      type: 'ExperienceTime'
-      id: string
-      data: ExperienceTimeData
-    }
-  | {
-      type: 'TextContent'
-      id: string
-      data: TextContentData
-    }
-  | {
-      type: 'ImageSection'
-      id: string
-      data: ImageSectionData
-    }
-
-export interface BasicInfoData {
-  avatarUrl: string
-  name: string
-  jobTitle: string
-  linksGroup: [LinkGroup, LinkGroup, LinkGroup]
-}
-export type LinkGroup = LinkItem[]
-export interface LinkItem {
-  href: string
-  content: string
-  icon: string
-}
-
-export interface TitleSectionData {
-  title: string
-}
-
-export interface ExperienceTimeData {
-  title: string
-  dateRange: string
-}
-
-export interface TextContentData {
-  content: string
-}
-
-export interface ImageSectionData {
-  url: string
-}
-
 export function createWidgetsNode(type: WidgetType): WidgetNode {
   const id = `${type}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
   switch (type) {
@@ -114,8 +51,16 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
           jobTitle: '前端开发工程师',
           linksGroup: [
             [
-              { href: '', content: '2050/01', icon: 'MynauiCake' },
-              { href: '', content: '15123456789', icon: 'MynauiTelephoneCall' },
+              {
+                href: '',
+                content: '2050/01',
+                icon: 'MynauiCake',
+              },
+              {
+                href: '',
+                content: '15123456789',
+                icon: 'MynauiTelephoneCall',
+              },
             ],
             [
               {
@@ -175,5 +120,9 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
 }
 
 export const createLinkItem: () => LinkItem = () => {
-  return { href: 'https://github.com/', content: 'github.com', icon: 'RiLinksLine' }
+  return {
+    href: 'https://github.com/',
+    content: 'github.com',
+    icon: 'RiLinksLine',
+  }
 }

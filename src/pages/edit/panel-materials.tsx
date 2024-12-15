@@ -1,19 +1,17 @@
 import { Button } from '@/components/ui/button.tsx'
-import type { WidgetType } from '@/components/widgets/widgets-util.ts'
+import type { WidgetType } from '@/components/widgets/widgets-type.d.ts'
 import { createWidgetsNode, widgetsDisplayInfo } from '@/components/widgets/widgets-util.ts'
-import { usePageStore } from '@/store/page-store.ts'
+import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
 import { clsx } from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 
-const WidgetPanel = () => {
+const PanelMaterials = () => {
   // click to push widget
-  const addWidget = usePageStore(state => state.addWidget)
-  const setSelectedId = usePageStore(state => state.setSelectedId)
+  const addWidget = useWidgetsStore(state => state.addWidget)
   const handleClick = (type: WidgetType) => {
     const newWidget = createWidgetsNode(type)
     addWidget(newWidget)
-    setSelectedId(newWidget.id)
   }
 
   const dragRefs = useRef<Array<HTMLButtonElement | null>>([])
@@ -60,4 +58,4 @@ const WidgetPanel = () => {
   )
 }
 
-export { WidgetPanel }
+export { PanelMaterials }

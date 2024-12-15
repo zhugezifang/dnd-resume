@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button.tsx'
 import { Input } from '@/components/ui/input.tsx'
-import { LinkIconSelect } from '@/components/widgets/link/link-icon-select.tsx'
-import { LinkInput } from '@/components/widgets/link/link-input.tsx'
-import type { LinkItem } from '@/components/widgets/widgets-util.ts'
+import { IconSelect } from '@/components/widgets/form/contacts/icon-select.tsx'
+import { LinkInput } from '@/components/widgets/form/contacts/link-input.tsx'
+import type { LinkItem } from '@/components/widgets/widgets-type.d.ts'
 import { createLinkItem } from '@/components/widgets/widgets-util.ts'
 import { produce } from 'immer'
 
@@ -11,7 +11,7 @@ interface LinkGroupProps {
   onChange: (data: LinkItem[]) => void
 }
 
-const LinkGroupForm = ({ data, onChange }: LinkGroupProps) => {
+const ContactsForm = ({ data, onChange }: LinkGroupProps) => {
   const handleChange = (index: number, field: keyof LinkItem, value: string) => {
     const nextState = produce(data, draft => {
       draft[index][field] = value
@@ -37,7 +37,7 @@ const LinkGroupForm = ({ data, onChange }: LinkGroupProps) => {
           key={index}
           className="mb-2 flex items-center"
         >
-          <LinkIconSelect
+          <IconSelect
             value={item.icon}
             onChange={newIcon => handleChange(index, 'icon', newIcon)}
             className="mr-1 shrink-0"
@@ -77,4 +77,4 @@ const LinkGroupForm = ({ data, onChange }: LinkGroupProps) => {
   )
 }
 
-export { LinkGroupForm }
+export { ContactsForm }

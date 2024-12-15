@@ -1,6 +1,6 @@
+import { Input } from '@/components/ui/input.tsx'
+import type { ImageSectionData } from '@/components/widgets/widgets-type.d.ts'
 import type { ChangeEvent } from 'react'
-import { Input } from '@/components/ui/input'
-import type { ImageSectionData } from '@/components/widgets/widgets-util.ts'
 
 const ImageSectionForm = ({
   data,

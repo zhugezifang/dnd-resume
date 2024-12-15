@@ -1,4 +1,4 @@
-import type { TitleSectionData } from '@/components/widgets/widgets-util.ts'
+import type { TitleSectionData } from '@/components/widgets/widgets-type.d.ts'
 
 interface TitleSectionProps {
   data: TitleSectionData

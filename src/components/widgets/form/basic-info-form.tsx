@@ -1,6 +1,6 @@
-import { Input } from '@/components/ui/input'
-import { LinkGroupForm } from '@/components/widgets/link/link-group-form.tsx'
-import type { BasicInfoData, LinkItem } from '@/components/widgets/widgets-util.ts'
+import { Input } from '@/components/ui/input.tsx'
+import { ContactsForm } from '@/components/widgets/form/contacts/contacts-form.tsx'
+import type { BasicInfoData, LinkItem } from '@/components/widgets/widgets-type.d.ts'
 import { produce } from 'immer'
 import type { ChangeEvent } from 'react'
 
@@ -68,21 +68,21 @@ const BasicInfoForm = ({
         <div className="form-label">
           <span>联系方式（第一行）</span>
         </div>
-        <LinkGroupForm
+        <ContactsForm
           data={linksGroup[0]}
           onChange={data => handleLinkGroupChange(0, data)}
         />
         <div className="form-label">
           <span>联系方式（第二行）</span>
         </div>
-        <LinkGroupForm
+        <ContactsForm
           data={linksGroup[1]}
           onChange={data => handleLinkGroupChange(1, data)}
         />
         <div className="form-label">
           <span>联系方式（第三行）</span>
         </div>
-        <LinkGroupForm
+        <ContactsForm
           data={linksGroup[2]}
           onChange={data => handleLinkGroupChange(2, data)}
         />

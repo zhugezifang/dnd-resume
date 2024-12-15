@@ -1,4 +1,4 @@
-import type { TextContentData } from '@/components/widgets/widgets-util.ts'
+import type { TextContentData } from '@/components/widgets/widgets-type.d.ts'
 
 interface TextContentProps {
   data: TextContentData

@@ -8,7 +8,7 @@ interface LinkIconSelectProps {
   className?: string
 }
 
-const LinkIconSelect = ({ value, onChange, className }: LinkIconSelectProps) => {
+const IconSelect = ({ value, onChange, className }: LinkIconSelectProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -42,4 +42,4 @@ const LinkIconSelect = ({ value, onChange, className }: LinkIconSelectProps) => 
   )
 }
 
-export { LinkIconSelect }
+export { IconSelect }
