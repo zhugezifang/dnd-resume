@@ -9,9 +9,14 @@ import { usePageStore } from '@/store/page-store.ts'
 import { clsx } from 'clsx'
 import { Reorder } from 'motion/react'
 import type { MouseEvent } from 'react'
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 
-const ReorderItem = forwardRef<HTMLDivElement, { item: WidgetNode }>(({ item }, ref) => {
+interface ReorderItemProps {
+  item: WidgetNode
+  ref: (el: HTMLDivElement) => void
+}
+
+function ReorderItem({ item, ref }: ReorderItemProps) {
   const setSelectedId = usePageStore(state => state.setSelectedId)
   const selectedId = usePageStore(state => state.selectedId)
   const selectedCls = selectedId === item.id ? 'shadow-[0_4px_12px_2px_rgba(223,84,74,0.6)]' : ''
@@ -68,6 +73,6 @@ const ReorderItem = forwardRef<HTMLDivElement, { item: WidgetNode }>(({ item }, 
       </div>
     </Reorder.Item>
   )
-})
+}
 
 export { ReorderItem }
