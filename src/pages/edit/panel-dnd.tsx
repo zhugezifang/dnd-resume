@@ -20,6 +20,9 @@ const PanelDnd = () => {
   const widgetsRef = useLatest(widgets)
   const selectedIdRef = useLatest(selectedId)
 
+  /**
+   * dom refs
+   */
   const dropRef = useRef<HTMLDivElement | null>(null)
   const widgetsDomRef = useRef<{ [id: string]: HTMLDivElement }>({})
   const widgetsLocationRef = useRef<Array<{ top: number; height: number }>>([])
@@ -34,6 +37,24 @@ const PanelDnd = () => {
       })
   }, [widgets])
 
+  /**
+   * auto scroll selected widget into view
+   */
+  useEffect(() => {
+    if (!selectedId) return
+    const element = widgetsDomRef.current[selectedId]
+    if (!element) return
+
+    const rect = element.getBoundingClientRect()
+    const inView = rect.top >= 68 && rect.bottom <= window.innerHeight - 16
+    if (!inView) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  }, [selectedId])
+
+  /**
+   * dnd logic
+   */
   const [dropIndex, setDropIndex] = useState<null | number>(null)
   const dropIndexRef = useLatest(dropIndex)
   const getGuideLineTop = () => {
