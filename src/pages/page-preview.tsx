@@ -1,8 +1,8 @@
-import { BasicInfo } from '@/components/widgets/display/basic-info.tsx'
-import { ExperienceTime } from '@/components/widgets/display/experience-time.tsx'
-import { ImageSection } from '@/components/widgets/display/image-section.tsx'
-import { TextContent } from '@/components/widgets/display/text-content.tsx'
-import { TitleSection } from '@/components/widgets/display/title-section.tsx'
+import { BasicInfo } from '@/components/widgets/node/basic-info.tsx'
+import { ExperienceTime } from '@/components/widgets/node/experience-time.tsx'
+import { ImageSection } from '@/components/widgets/node/image-section.tsx'
+import { TextContent } from '@/components/widgets/node/text-content.tsx'
+import { TitleSection } from '@/components/widgets/node/title-section.tsx'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 

@@ -1,6 +1,6 @@
 import { Input } from '@/components/ui/input.tsx'
 import { ContactsForm } from '@/components/widgets/form/contacts/contacts-form.tsx'
-import type { BasicInfoData, LinkItem } from '@/components/widgets/widgets-type.d.ts'
+import type { BasicInfoData, LinkItemData } from '@/components/widgets/widgets-type.d.ts'
 import { produce } from 'immer'
 import type { ChangeEvent } from 'react'
 
@@ -18,7 +18,7 @@ const BasicInfoForm = ({
     onChange({ ...data, [name]: value })
   }
 
-  const handleLinkGroupChange = (groupIndex: number, linkGroup: LinkItem[]) => {
+  const handleLinkGroupChange = (groupIndex: number, linkGroup: LinkItemData[]) => {
     const nextState = produce(data.linksGroup, draft => {
       draft[groupIndex] = linkGroup
     })

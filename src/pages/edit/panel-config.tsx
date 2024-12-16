@@ -3,7 +3,7 @@ import { ExperienceTimeForm } from '@/components/widgets/form/experience-time-fo
 import { ImageSectionForm } from '@/components/widgets/form/image-section-form.tsx'
 import { TextContentForm } from '@/components/widgets/form/text-content-form.tsx'
 import { TitleSectionForm } from '@/components/widgets/form/title-section-form.tsx'
-import { widgetsDisplayMap } from '@/components/widgets/widgets-util.ts'
+import { widgetMaterialMap } from '@/components/widgets/widgets-util.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { clsx } from 'clsx'
 
@@ -14,7 +14,7 @@ const PanelConfig = () => {
   const selectedWidget = useWidgetsStore(state => state.selectedWidget())
   if (!selectedWidget) return null
 
-  const widgetInfo = widgetsDisplayMap[selectedWidget.type]
+  const widgetMaterialInfo = widgetMaterialMap[selectedWidget.type]
 
   const onChange = (data: any) => {
     const newWidgets = widgets.map(item => {
@@ -68,8 +68,8 @@ const PanelConfig = () => {
   return (
     <div className="p-4">
       <div className="flex items-center">
-        <span className={clsx(widgetInfo.icon, 'h-4 w-4')}></span>
-        <span className="ml-2 text-xl font-medium">{widgetInfo.title}</span>
+        <span className={clsx(widgetMaterialInfo.icon, 'h-4 w-4')}></span>
+        <span className="ml-2 text-xl font-medium">{widgetMaterialInfo.title}</span>
       </div>
       {FormComponent}
     </div>

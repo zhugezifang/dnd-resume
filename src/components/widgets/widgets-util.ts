@@ -1,11 +1,11 @@
 import type {
-  LinkItem,
-  WidgetDisplayInfo,
+  LinkItemData,
+  WidgetMaterial,
   WidgetNode,
   WidgetType,
 } from '@/components/widgets/widgets-type.d.ts'
 
-export const widgetsDisplayInfo: WidgetDisplayInfo[] = [
+export const widgetMaterialList: WidgetMaterial[] = [
   {
     type: 'BasicInfo',
     icon: 'iconify ri--user-3-line',
@@ -33,13 +33,13 @@ export const widgetsDisplayInfo: WidgetDisplayInfo[] = [
   },
 ]
 
-export const widgetsDisplayMap: { [type: string]: WidgetDisplayInfo } = {}
-for (const widgetInfo of widgetsDisplayInfo) {
-  widgetsDisplayMap[widgetInfo.type] = widgetInfo
+export const widgetMaterialMap: { [type: string]: WidgetMaterial } = {}
+for (const widgetInfo of widgetMaterialList) {
+  widgetMaterialMap[widgetInfo.type] = widgetInfo
 }
 
 export function createWidgetsNode(type: WidgetType): WidgetNode {
-  const id = `${type}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
+  const id = `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`
   switch (type) {
     case 'BasicInfo':
       return {
@@ -119,7 +119,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
   }
 }
 
-export const createLinkItem: () => LinkItem = () => {
+export const createLinkItem: () => LinkItemData = () => {
   return {
     href: 'https://github.com/',
     content: 'github.com',

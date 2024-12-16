@@ -1,7 +1,7 @@
 import type { WidgetType } from '@/components/widgets/widgets-type.d.ts'
 import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
 import { useLatest } from '@/hooks/use-latest.ts'
-import { WidgetDisplayItem } from '@/pages/edit/widget-display-item.tsx'
+import { DraggableWidgetNode } from '@/pages/edit/draggable-widget-node.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
 import { Reorder } from 'motion/react'
@@ -115,7 +115,7 @@ const PanelDnd = () => {
         onReorder={setWidgets}
       >
         {widgets.map(item => (
-          <WidgetDisplayItem
+          <DraggableWidgetNode
             key={item.id}
             ref={el => (widgetsDomRef.current[item.id] = el!)}
             item={item}

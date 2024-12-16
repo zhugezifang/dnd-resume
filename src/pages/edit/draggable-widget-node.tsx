@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button.tsx'
-import { BasicInfo } from '@/components/widgets/display/basic-info.tsx'
-import { ExperienceTime } from '@/components/widgets/display/experience-time.tsx'
-import { ImageSection } from '@/components/widgets/display/image-section.tsx'
-import { TextContent } from '@/components/widgets/display/text-content.tsx'
-import { TitleSection } from '@/components/widgets/display/title-section.tsx'
+import { BasicInfo } from '@/components/widgets/node/basic-info.tsx'
+import { ExperienceTime } from '@/components/widgets/node/experience-time.tsx'
+import { ImageSection } from '@/components/widgets/node/image-section.tsx'
+import { TextContent } from '@/components/widgets/node/text-content.tsx'
+import { TitleSection } from '@/components/widgets/node/title-section.tsx'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { clsx } from 'clsx'
@@ -16,7 +16,7 @@ interface ReorderItemProps {
   ref: (el: HTMLDivElement) => void
 }
 
-function WidgetDisplayItem({ item, ref }: ReorderItemProps) {
+function DraggableWidgetNode({ item, ref }: ReorderItemProps) {
   const setSelectedId = useWidgetsStore(state => state.setSelectedId)
   const selectedId = useWidgetsStore(state => state.selectedId)
   const selectedCls = selectedId === item.id ? 'shadow-[0_4px_12px_2px_rgba(223,84,74,0.6)]' : ''
@@ -75,4 +75,4 @@ function WidgetDisplayItem({ item, ref }: ReorderItemProps) {
   )
 }
 
-export { WidgetDisplayItem }
+export { DraggableWidgetNode }

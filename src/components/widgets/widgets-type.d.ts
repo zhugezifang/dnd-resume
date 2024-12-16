@@ -5,7 +5,7 @@ export type WidgetType =
   | 'TextContent'
   | 'ImageSection'
 
-export interface WidgetDisplayInfo {
+export interface WidgetMaterial {
   type: WidgetType
   icon: string
   title: string
@@ -42,10 +42,10 @@ export interface BasicInfoData {
   avatarUrl: string
   name: string
   jobTitle: string
-  linksGroup: [LinkGroup, LinkGroup, LinkGroup]
+  linksGroup: [LinkGroupData, LinkGroupData, LinkGroupData]
 }
-export type LinkGroup = LinkItem[]
-export interface LinkItem {
+export type LinkGroupData = LinkItemData[]
+export interface LinkItemData {
   href: string
   content: string
   icon: string
