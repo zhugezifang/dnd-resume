@@ -3,9 +3,11 @@ import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
 import { useLatest } from '@/hooks/use-latest.ts'
 import { DraggableWidgetNode } from '@/pages/edit/draggable-widget-node.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
+import { autoScrollForElements } from '@atlaskit/pragmatic-drag-and-drop-auto-scroll/element'
 import { dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
 import { Reorder } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
+import invariant from 'tiny-invariant'
 import { useShallow } from 'zustand/react/shallow'
 
 const PanelDnd = () => {
@@ -51,6 +53,16 @@ const PanelDnd = () => {
       element.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }
   }, [selectedId])
+
+  /**
+   * auto scroll while dragging
+   */
+  useEffect(() => {
+    invariant(dropRef.current)
+    return autoScrollForElements({
+      element: dropRef.current,
+    })
+  }, [])
 
   /**
    * dnd logic
