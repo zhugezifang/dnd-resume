@@ -8,7 +8,7 @@ const TitleSection = ({ data }: TitleSectionProps) => {
   const { title } = data
 
   return (
-    <div className="mb-3 mt-10 flex h-9 items-center">
+    <div className="flex h-9 items-center">
       <div className="h-full w-1 bg-zinc-600"></div>
       <div className="flex h-full flex-grow items-center bg-zinc-200 pl-2 text-xl font-medium">
         {title}

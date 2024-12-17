@@ -76,6 +76,10 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
             ],
             [],
           ],
+          style: {
+            marginTop: 24,
+            marginBottom: 24,
+          },
         },
       }
     case 'TitleSection':
@@ -84,6 +88,10 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         id,
         data: {
           title: '工作经历',
+          style: {
+            marginTop: 8,
+            marginBottom: 16,
+          },
         },
       }
     case 'ExperienceTime':
@@ -93,6 +101,10 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         data: {
           title: '腾讯科技（深圳）有限公司',
           dateRange: '2077/07 - 2080/07',
+          style: {
+            marginTop: 0,
+            marginBottom: 8,
+          },
         },
       }
     case 'TextContent':
@@ -102,6 +114,10 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         data: {
           content:
             '<h3><a target="_blank" rel="noopener noreferrer nofollow" href="https://pay.weixin.qq.com/">微信支付</a> - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
+          style: {
+            marginTop: 0,
+            marginBottom: 8,
+          },
         },
       }
     case 'ImageSection':
@@ -110,6 +126,10 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         id,
         data: {
           url: '/image.png',
+          style: {
+            marginTop: 0,
+            marginBottom: 16,
+          },
         },
       }
     default: {

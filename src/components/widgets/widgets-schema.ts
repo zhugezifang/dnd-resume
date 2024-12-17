@@ -18,6 +18,10 @@ const basicInfoSchema = z.object({
       z.array(linkItemSchema),
       z.array(linkItemSchema),
     ]),
+    style: z.object({
+      marginTop: z.number(),
+      marginBottom: z.number(),
+    }),
   }),
 })
 
@@ -26,6 +30,10 @@ const titleSectionSchema = z.object({
   id: z.string(),
   data: z.object({
     title: z.string(),
+    style: z.object({
+      marginTop: z.number(),
+      marginBottom: z.number(),
+    }),
   }),
 })
 
@@ -35,6 +43,10 @@ const experienceTimeSchema = z.object({
   data: z.object({
     title: z.string(),
     dateRange: z.string(),
+    style: z.object({
+      marginTop: z.number(),
+      marginBottom: z.number(),
+    }),
   }),
 })
 
@@ -43,6 +55,10 @@ const textContentSchema = z.object({
   id: z.string(),
   data: z.object({
     content: z.string(),
+    style: z.object({
+      marginTop: z.number(),
+      marginBottom: z.number(),
+    }),
   }),
 })
 
@@ -51,6 +67,10 @@ const imageSectionSchema = z.object({
   id: z.string(),
   data: z.object({
     url: z.string(),
+    style: z.object({
+      marginTop: z.number(),
+      marginBottom: z.number(),
+    }),
   }),
 })
 

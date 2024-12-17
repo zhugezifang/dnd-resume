@@ -38,7 +38,14 @@ export type WidgetNode =
       data: ImageSectionData
     }
 
-export interface BasicInfoData {
+interface CommonStyleData {
+  style: {
+    marginTop: number
+    marginBottom: number
+  }
+}
+
+export interface BasicInfoData extends CommonStyleData {
   avatarUrl: string
   name: string
   jobTitle: string
@@ -51,19 +58,19 @@ export interface LinkItemData {
   icon: string
 }
 
-export interface TitleSectionData {
+export interface TitleSectionData extends CommonStyleData {
   title: string
 }
 
-export interface ExperienceTimeData {
+export interface ExperienceTimeData extends CommonStyleData {
   title: string
   dateRange: string
 }
 
-export interface TextContentData {
+export interface TextContentData extends CommonStyleData {
   content: string
 }
 
-export interface ImageSectionData {
+export interface ImageSectionData extends CommonStyleData {
   url: string
 }

@@ -72,18 +72,20 @@ function DraggableWidgetNode({ item, isSelected }: ReorderItemProps) {
       {...attributes}
       {...listeners}
       onMouseDown={handleClickItem}
-      className={clsx('group relative cursor-move bg-white transition-shadow', getCls())}
+      className={clsx('group relative flow-root cursor-move bg-white transition-shadow', getCls())}
     >
-      {WidgetRenderComponent()}
+      <div style={item.data.style}>
+        {WidgetRenderComponent()}
 
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-1 top-1 h-7 w-7 opacity-0 transition-opacity group-hover:opacity-100"
-        onClick={handleClickRemove}
-      >
-        <div className="iconify text-lg ri--delete-bin-line"></div>
-      </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute right-1 top-1 h-7 w-7 opacity-0 transition-opacity group-hover:opacity-100"
+          onClick={handleClickRemove}
+        >
+          <div className="iconify text-lg ri--delete-bin-line"></div>
+        </Button>
+      </div>
     </li>
   )
 }

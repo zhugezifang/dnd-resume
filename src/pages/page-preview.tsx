@@ -25,11 +25,16 @@ const PagePreview = () => {
 
   return (
     <div className="mx-auto w-[900px]">
-      <div className="print-wrapper">
+      <ul className="print-wrapper">
         {widgets.map(item => (
-          <div key={item.id}>{WidgetRenderComponent(item)}</div>
+          <li
+            key={item.id}
+            className="flow-root"
+          >
+            <div style={item.data.style}>{WidgetRenderComponent(item)}</div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }
