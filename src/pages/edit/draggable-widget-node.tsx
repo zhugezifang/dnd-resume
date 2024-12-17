@@ -81,7 +81,7 @@ function DraggableWidgetNode({ item, isSelected }: ReorderItemProps) {
           variant="outline"
           size="icon"
           className="absolute right-1 top-1 h-7 w-7 opacity-0 transition-opacity group-hover:opacity-100"
-          onClick={handleClickRemove}
+          onMouseDown={handleClickRemove}
         >
           <div className="iconify text-lg ri--delete-bin-line"></div>
         </Button>

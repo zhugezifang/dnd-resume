@@ -25,7 +25,9 @@ const PanelDnd = () => {
     if (!over) return
     if (active.id !== over.id) {
       const oldIndex = widgets.findIndex(item => item.id === active.id)
+      if (oldIndex === -1) return
       const newIndex = widgets.findIndex(item => item.id === over.id)
+      if (newIndex === -1) return
       setWidgets(arrayMove(widgets, oldIndex, newIndex))
       setSelectedId(active.id as string)
     }

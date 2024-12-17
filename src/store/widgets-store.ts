@@ -60,11 +60,13 @@ const useWidgetsStore = create<PageState>()((set, get) => {
         const index = widgets.findIndex(item => item.id === id)
         const newWidgets = widgets.filter(widget => widget.id !== id)
         const selectedId =
-          newWidgets.length > index
-            ? newWidgets[index].id // 聚焦到下一个
-            : newWidgets.length === index
-              ? newWidgets[index - 1].id // 删除的是最后一个
-              : null
+          newWidgets.length === 0
+            ? null // 最后一个删除了
+            : newWidgets.length > index
+              ? newWidgets[index].id // 聚焦到下一个
+              : newWidgets.length === index
+                ? newWidgets[index - 1].id // 删除的是最后一个
+                : null
         storage.set('WIDGETS', newWidgets)
         return {
           widgets: newWidgets,
