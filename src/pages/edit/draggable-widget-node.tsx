@@ -6,8 +6,9 @@ import { TextContent } from '@/components/widgets/node/text-content.tsx'
 import { TitleSection } from '@/components/widgets/node/title-section.tsx'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import { clsx } from 'clsx'
-import { Reorder } from 'motion/react'
 import type { MouseEvent } from 'react'
 import { memo } from 'react'
 
@@ -17,10 +18,31 @@ interface ReorderItemProps {
 }
 
 function DraggableWidgetNode({ item, isSelected }: ReorderItemProps) {
-  const setSelectedId = useWidgetsStore(state => state.setSelectedId)
-  const handleClick = () => setSelectedId(item.id)
+  /**
+   * dnd logic
+   */
+  const { isDragging, attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: item.id,
+  })
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  }
+  const getCls: () => string = () => {
+    if (isDragging) return 'z-20 shadow-[0_4px_18px_2px_rgba(219,99,39,0.8)]'
+    if (isSelected) return 'z-10 shadow-[0_4px_12px_2px_rgba(219,99,39,0.6)]'
+    return ''
+  }
 
-  // remove widget
+  /**
+   * click to setSelectedId
+   */
+  const setSelectedId = useWidgetsStore(state => state.setSelectedId)
+  const handleClickItem = () => setSelectedId(item.id)
+
+  /**
+   * click to remove widget
+   */
   const removeWidget = useWidgetsStore(state => state.removeWidget)
   const handleClickRemove = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
@@ -43,32 +65,26 @@ function DraggableWidgetNode({ item, isSelected }: ReorderItemProps) {
   }
 
   return (
-    <Reorder.Item
-      value={item}
-      whileHover={{ boxShadow: '0px 4px 12px 2px rgba(219,99,39,0.6)' }}
-      whileDrag={{ zIndex: 20 }}
-      className="relative cursor-move bg-white"
+    <li
+      id={item.id}
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      onMouseDown={handleClickItem}
+      className={clsx('group relative cursor-move bg-white transition-shadow', getCls())}
     >
-      <div
-        id={item.id}
-        className={clsx(
-          'relative',
-          isSelected && 'z-10 shadow-[0_4px_12px_2px_rgba(223,84,74,0.6)]',
-        )}
-        onClick={handleClick}
-      >
-        {WidgetRenderComponent()}
+      {WidgetRenderComponent()}
 
-        <Button
-          variant="outline"
-          size="icon"
-          className="absolute right-1 top-1 h-7 w-7 opacity-0 transition-opacity group-hover:opacity-100"
-          onClick={handleClickRemove}
-        >
-          <div className="iconify text-lg ri--delete-bin-line"></div>
-        </Button>
-      </div>
-    </Reorder.Item>
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute right-1 top-1 h-7 w-7 opacity-0 transition-opacity group-hover:opacity-100"
+        onClick={handleClickRemove}
+      >
+        <div className="iconify text-lg ri--delete-bin-line"></div>
+      </Button>
+    </li>
   )
 }
 

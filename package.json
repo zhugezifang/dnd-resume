@@ -21,8 +21,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@atlaskit/pragmatic-drag-and-drop": "^1.4.0",
-    "@atlaskit/pragmatic-drag-and-drop-auto-scroll": "^2.1.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.3",
     "@radix-ui/react-dialog": "^1.1.3",
     "@radix-ui/react-popover": "^1.1.3",
@@ -52,6 +54,7 @@
     "@iconify/tailwind": "^1.2.0",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.1",
+    "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "autoprefixer": "^10.4.20",
