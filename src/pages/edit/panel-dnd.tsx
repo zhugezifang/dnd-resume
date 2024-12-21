@@ -1,9 +1,21 @@
 import { DraggableWidgetNode } from '@/pages/edit/draggable-widget-node.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
-import { closestCenter, DndContext } from '@dnd-kit/core'
+import {
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
 import type { DragEndEvent } from '@dnd-kit/core/dist/types'
 import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
-import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
 import { useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
@@ -20,6 +32,16 @@ const PanelDnd = () => {
   /**
    * dnd logic
    */
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 2,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  )
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
     if (!over) return
@@ -51,6 +73,7 @@ const PanelDnd = () => {
   return (
     <ul className="print-wrapper relative rounded-2xl border">
       <DndContext
+        sensors={sensors}
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
         modifiers={[restrictToParentElement, restrictToVerticalAxis]}
