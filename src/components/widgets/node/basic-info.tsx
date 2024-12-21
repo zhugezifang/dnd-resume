@@ -3,7 +3,7 @@ import type { BasicInfoData } from '@/components/widgets/widgets-type.d.ts'
 import { clsx } from 'clsx'
 
 interface BasicInfoProps {
-  data: BasicInfoData
+  data: BasicInfoData['propsData']
 }
 
 const BasicInfo = ({ data }: BasicInfoProps) => {

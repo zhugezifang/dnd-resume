@@ -9,10 +9,18 @@ const ExperienceTimeForm = ({
   data: ExperienceTimeData
   onChange: (value: ExperienceTimeData) => void
 }) => {
+  const { propsData } = data
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
-    onChange({ ...data, [name]: value })
+    onChange({
+      ...data,
+      propsData: {
+        ...propsData,
+        [name]: value,
+      },
+    })
   }
 
   return (
@@ -24,7 +32,7 @@ const ExperienceTimeForm = ({
         </div>
         <Input
           name="title"
-          value={data.title}
+          value={propsData.title}
           placeholder="输入经历"
           onChange={handleChange}
         />
@@ -36,7 +44,7 @@ const ExperienceTimeForm = ({
         </div>
         <Input
           name="dateRange"
-          value={data.dateRange}
+          value={propsData.dateRange}
           placeholder="输入起止时间"
           onChange={handleChange}
         />

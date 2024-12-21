@@ -9,10 +9,18 @@ const ImageSectionForm = ({
   data: ImageSectionData
   onChange: (value: ImageSectionData) => void
 }) => {
+  const { propsData } = data
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
-    onChange({ ...data, [name]: value })
+    onChange({
+      ...data,
+      propsData: {
+        ...propsData,
+        [name]: value,
+      },
+    })
   }
 
   return (
@@ -24,7 +32,7 @@ const ImageSectionForm = ({
         </div>
         <Input
           name="url"
-          value={data.url}
+          value={propsData.url}
           placeholder="输入图片地址"
           onChange={handleChange}
         />

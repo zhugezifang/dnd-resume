@@ -9,10 +9,18 @@ const TitleSectionForm = ({
   data: TitleSectionData
   onChange: (value: TitleSectionData) => void
 }) => {
+  const { propsData } = data
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
-    onChange({ ...data, [name]: value })
+    onChange({
+      ...data,
+      propsData: {
+        ...propsData,
+        [name]: value,
+      },
+    })
   }
 
   return (
@@ -24,7 +32,7 @@ const TitleSectionForm = ({
         </div>
         <Input
           name="title"
-          value={data.title}
+          value={propsData.title}
           placeholder="输入标题内容"
           onChange={handleChange}
         />

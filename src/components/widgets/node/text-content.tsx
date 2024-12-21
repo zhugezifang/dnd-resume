@@ -1,7 +1,7 @@
 import type { TextContentData } from '@/components/widgets/widgets-type.d.ts'
 
 interface TextContentProps {
-  data: TextContentData
+  data: TextContentData['propsData']
 }
 
 const TextContent = ({ data }: TextContentProps) => {

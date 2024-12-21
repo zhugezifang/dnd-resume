@@ -20,6 +20,8 @@ const TextContentForm = ({
   data: TextContentData
   onChange: (value: TextContentData) => void
 }) => {
+  const { propsData } = data
+
   const editor = useRef<Editor | null>(null)
   const handleEditorCreated = (val: Editor) => {
     editor.current = val
@@ -30,7 +32,7 @@ const TextContentForm = ({
   const handleOpenChange = (open: boolean) => {
     if (open) {
       setOpen(true)
-      setContent(data.content)
+      setContent(propsData.content)
     } else {
       setOpen(false)
       setContent('')
@@ -38,7 +40,13 @@ const TextContentForm = ({
   }
   const handleSave = () => {
     if (editor.current) {
-      onChange({ ...data, content: editor.current.getHTML() })
+      onChange({
+        ...data,
+        propsData: {
+          ...propsData,
+          content: editor.current.getHTML(),
+        },
+      })
     }
     handleOpenChange(false)
   }

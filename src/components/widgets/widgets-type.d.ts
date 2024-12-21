@@ -38,18 +38,21 @@ export type WidgetNode =
       data: ImageSectionData
     }
 
+export interface StyleData {
+  marginTop: number
+  marginBottom: number
+}
 interface CommonStyleData {
-  style: {
-    marginTop: number
-    marginBottom: number
-  }
+  styleData: StyleData
 }
 
 export interface BasicInfoData extends CommonStyleData {
-  avatarUrl: string
-  name: string
-  jobTitle: string
-  linksGroup: [LinkGroupData, LinkGroupData, LinkGroupData]
+  propsData: {
+    avatarUrl: string
+    name: string
+    jobTitle: string
+    linksGroup: [LinkGroupData, LinkGroupData, LinkGroupData]
+  }
 }
 export type LinkGroupData = LinkItemData[]
 export interface LinkItemData {
@@ -59,18 +62,26 @@ export interface LinkItemData {
 }
 
 export interface TitleSectionData extends CommonStyleData {
-  title: string
+  propsData: {
+    title: string
+  }
 }
 
 export interface ExperienceTimeData extends CommonStyleData {
-  title: string
-  dateRange: string
+  propsData: {
+    title: string
+    dateRange: string
+  }
 }
 
 export interface TextContentData extends CommonStyleData {
-  content: string
+  propsData: {
+    content: string
+  }
 }
 
 export interface ImageSectionData extends CommonStyleData {
-  url: string
+  propsData: {
+    url: string
+  }
 }

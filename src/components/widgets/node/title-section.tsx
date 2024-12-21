@@ -1,7 +1,7 @@
 import type { TitleSectionData } from '@/components/widgets/widgets-type.d.ts'
 
 interface TitleSectionProps {
-  data: TitleSectionData
+  data: TitleSectionData['propsData']
 }
 
 const TitleSection = ({ data }: TitleSectionProps) => {

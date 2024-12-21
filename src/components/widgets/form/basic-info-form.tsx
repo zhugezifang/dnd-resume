@@ -11,18 +11,31 @@ const BasicInfoForm = ({
   data: BasicInfoData
   onChange: (value: BasicInfoData) => void
 }) => {
-  const { avatarUrl, name, jobTitle, linksGroup } = data
+  const { propsData } = data
+  const { avatarUrl, name, jobTitle, linksGroup } = propsData
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    onChange({ ...data, [name]: value })
+    onChange({
+      ...data,
+      propsData: {
+        ...propsData,
+        [name]: value,
+      },
+    })
   }
 
   const handleLinkGroupChange = (groupIndex: number, linkGroup: LinkItemData[]) => {
-    const nextState = produce(data.linksGroup, draft => {
+    const nextState = produce(linksGroup, draft => {
       draft[groupIndex] = linkGroup
     })
-    onChange({ ...data, linksGroup: nextState })
+    onChange({
+      ...data,
+      propsData: {
+        ...propsData,
+        linksGroup: nextState,
+      },
+    })
   }
 
   return (

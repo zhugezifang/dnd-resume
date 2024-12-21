@@ -20,7 +20,12 @@ const useWidgetsStore = create<PageState>()((set, get) => {
   let widgets: WidgetNode[] = []
   const json = storage.get('WIDGETS')
   if (json) {
-    widgets = widgetsSchema.safeParse(json).data || []
+    const ret = widgetsSchema.safeParse(json)
+    if (ret.success) {
+      widgets = ret.data
+    } else {
+      console.error(ret.error)
+    }
   } else {
     // initial data
     widgets.push(createWidgetsNode('BasicInfo'))

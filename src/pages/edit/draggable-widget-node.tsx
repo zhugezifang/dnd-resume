@@ -52,15 +52,15 @@ function DraggableWidgetNode({ item, isSelected }: ReorderItemProps) {
   const WidgetRenderComponent = () => {
     switch (item.type) {
       case 'BasicInfo':
-        return <BasicInfo data={item.data} />
+        return <BasicInfo data={item.data.propsData} />
       case 'TitleSection':
-        return <TitleSection data={item.data} />
+        return <TitleSection data={item.data.propsData} />
       case 'ExperienceTime':
-        return <ExperienceTime data={item.data} />
+        return <ExperienceTime data={item.data.propsData} />
       case 'TextContent':
-        return <TextContent data={item.data} />
+        return <TextContent data={item.data.propsData} />
       case 'ImageSection':
-        return <ImageSection data={item.data} />
+        return <ImageSection data={item.data.propsData} />
     }
   }
 
@@ -74,7 +74,7 @@ function DraggableWidgetNode({ item, isSelected }: ReorderItemProps) {
       onMouseDown={handleClickItem}
       className={clsx('group relative flow-root cursor-move bg-white transition-shadow', getCls())}
     >
-      <div style={item.data.style}>
+      <div style={item.data.styleData}>
         {WidgetRenderComponent()}
 
         <Button

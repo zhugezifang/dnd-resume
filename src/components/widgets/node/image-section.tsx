@@ -1,7 +1,7 @@
 import type { ImageSectionData } from '@/components/widgets/widgets-type.d.ts'
 
 interface ImageSectionProps {
-  data: ImageSectionData
+  data: ImageSectionData['propsData']
 }
 
 const ImageSection = ({ data }: ImageSectionProps) => {

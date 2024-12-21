@@ -1,7 +1,7 @@
 import type { ExperienceTimeData } from '@/components/widgets/widgets-type.d.ts'
 
 interface ExperienceTimeProps {
-  data: ExperienceTimeData
+  data: ExperienceTimeData['propsData']
 }
 
 const ExperienceTime = ({ data }: ExperienceTimeProps) => {
