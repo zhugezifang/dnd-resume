@@ -10,7 +10,6 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { clsx } from 'clsx'
 import type { MouseEvent } from 'react'
-import { memo } from 'react'
 
 interface ReorderItemProps {
   item: WidgetNode
@@ -90,6 +89,4 @@ function DraggableWidgetNode({ item, isSelected }: ReorderItemProps) {
   )
 }
 
-const Memorized = memo(DraggableWidgetNode)
-
-export { Memorized as DraggableWidgetNode }
+export { DraggableWidgetNode }
