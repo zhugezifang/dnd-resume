@@ -12,6 +12,8 @@ const basicInfoSchema = z.object({
   data: z.object({
     propsData: z.object({
       avatarUrl: z.string(),
+      avatarSize: z.number(),
+      avatarRound: z.boolean(),
       name: z.string(),
       jobTitle: z.string(),
       linksGroup: z.tuple([

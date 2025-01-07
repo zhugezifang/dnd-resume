@@ -1,8 +1,13 @@
 import { Input } from '@/components/ui/input.tsx'
+import { Slider } from '@/components/ui/slider'
+import { AvatarRoundedSelect } from '@/components/widgets/form/avatar/avatar-rounded-select.tsx'
 import { ContactsForm } from '@/components/widgets/form/contacts/contacts-form.tsx'
 import type { BasicInfoData, LinkItemData } from '@/components/widgets/widgets-type.d.ts'
 import { produce } from 'immer'
 import type { ChangeEvent } from 'react'
+
+const MIN_AVATAR_SIZE = 48
+const MAX_AVATAR_SIZE = 128
 
 const BasicInfoForm = ({
   data,
@@ -12,7 +17,7 @@ const BasicInfoForm = ({
   onChange: (value: BasicInfoData) => void
 }) => {
   const { propsData } = data
-  const { avatarUrl, name, jobTitle, linksGroup } = propsData
+  const { avatarUrl, avatarSize, avatarRound, name, jobTitle, linksGroup } = propsData
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -21,6 +26,26 @@ const BasicInfoForm = ({
       propsData: {
         ...propsData,
         [name]: value,
+      },
+    })
+  }
+
+  const handleAvatarSizeChange = (value: string | number) => {
+    onChange({
+      ...data,
+      propsData: {
+        ...propsData,
+        avatarSize: Number(value),
+      },
+    })
+  }
+
+  const handleAvatarRoundChange = (isRound: boolean) => {
+    onChange({
+      ...data,
+      propsData: {
+        ...propsData,
+        avatarRound: isRound,
       },
     })
   }
@@ -45,12 +70,44 @@ const BasicInfoForm = ({
         <div className="form-label">
           <span>头像地址</span>
         </div>
-        <Input
-          name="avatarUrl"
-          value={avatarUrl}
-          placeholder="输入头像地址"
-          onChange={handleChange}
-        />
+        <div className="flex items-center justify-between">
+          <Input
+            className="mr-4 w-32"
+            name="avatarUrl"
+            value={avatarUrl}
+            placeholder="输入头像地址"
+            onChange={handleChange}
+          />
+          <AvatarRoundedSelect
+            url={avatarUrl}
+            rounded={avatarRound}
+            onChange={handleAvatarRoundChange}
+          />
+        </div>
+      </div>
+      {/* 头像尺寸 */}
+      <div>
+        <div className="form-label">
+          <span>头像尺寸</span>
+        </div>
+        <div className="flex items-center">
+          <Input
+            className="mr-4 w-32 shrink-0"
+            name="avatarSize"
+            type="number"
+            min={MIN_AVATAR_SIZE}
+            max={MAX_AVATAR_SIZE}
+            value={avatarSize}
+            onChange={e => handleAvatarSizeChange(e.target.value)}
+          />
+          <Slider
+            value={[avatarSize]}
+            min={MIN_AVATAR_SIZE}
+            max={MAX_AVATAR_SIZE}
+            step={1}
+            onValueChange={val => handleAvatarSizeChange(val[0])}
+          />
+        </div>
       </div>
       {/* 姓名 */}
       <div>

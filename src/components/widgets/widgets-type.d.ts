@@ -49,6 +49,8 @@ interface CommonStyleData {
 export interface BasicInfoData extends CommonStyleData {
   propsData: {
     avatarUrl: string
+    avatarSize: number
+    avatarRound: boolean
     name: string
     jobTitle: string
     linksGroup: [LinkGroupData, LinkGroupData, LinkGroupData]

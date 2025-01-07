@@ -48,6 +48,8 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         data: {
           propsData: {
             avatarUrl: '/avatar.jpg',
+            avatarSize: 100,
+            avatarRound: true,
             name: '炭治郎',
             jobTitle: '前端开发工程师',
             linksGroup: [

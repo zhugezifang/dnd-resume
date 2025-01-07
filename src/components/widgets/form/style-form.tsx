@@ -36,7 +36,7 @@ function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32"
+            className="mr-4 w-32 shrink-0"
             name="marginTop"
             type="number"
             min={MIN_VAL}
@@ -58,7 +58,7 @@ function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32"
+            className="mr-4 w-32 shrink-0"
             name="marginBottom"
             type="number"
             min={MIN_VAL}

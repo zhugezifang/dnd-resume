@@ -7,7 +7,7 @@ interface BasicInfoProps {
 }
 
 const BasicInfo = ({ data }: BasicInfoProps) => {
-  const { avatarUrl, name, jobTitle, linksGroup } = data
+  const { avatarUrl, avatarSize, avatarRound, name, jobTitle, linksGroup } = data
 
   return (
     <div className="flex-center py-5">
@@ -16,8 +16,8 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
         <img
           src={avatarUrl}
           alt="avatar"
-          width="100"
-          className="mr-16 rounded-full"
+          width={avatarSize || 100}
+          className={clsx('mr-16', avatarRound && 'rounded-full')}
           draggable={false}
         />
       ) : null}
