@@ -78,6 +78,7 @@ const imageSectionSchema = z.object({
   data: z.object({
     propsData: z.object({
       url: z.string(),
+      imageSize: z.number(),
     }),
     styleData: z.object({
       marginTop: z.number(),

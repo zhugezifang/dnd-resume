@@ -85,5 +85,6 @@ export interface TextContentData extends CommonStyleData {
 export interface ImageSectionData extends CommonStyleData {
   propsData: {
     url: string
+    imageSize: number
   }
 }
