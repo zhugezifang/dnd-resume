@@ -17,13 +17,13 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
           src={avatarUrl}
           alt="avatar"
           width={avatarSize || 100}
-          className={clsx('mr-16', avatarRound && 'rounded-full')}
+          className={clsx('mr-8 sm:mr-16', avatarRound && 'rounded-full')}
           draggable={false}
         />
       ) : null}
-      <div>
+      <div className="basis-0">
         {/* 姓名、职位 */}
-        <div className="mb-1 flex items-end">
+        <div className="mb-1 flex items-end whitespace-nowrap">
           <span className="mr-3 text-2xl font-semibold">{name}</span>
           <span className="text-[17px]">{jobTitle}</span>
         </div>
@@ -31,7 +31,7 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
         <ul>
           {linksGroup.map((links, groupIndex) => (
             <li key={groupIndex}>
-              <ul className="flex items-center">
+              <ul className="flex flex-wrap items-center sm:flex-nowrap">
                 {links.map((item, index) => (
                   <li
                     key={index}

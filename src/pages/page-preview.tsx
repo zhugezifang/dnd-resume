@@ -74,7 +74,7 @@ const PagePreview = () => {
   }
 
   return (
-    <div className="mx-auto w-[900px]">
+    <div className="mx-auto lg:w-[900px] print:w-[900px]">
       <ul className="print-wrapper">
         {widgets.map(item => (
           <li

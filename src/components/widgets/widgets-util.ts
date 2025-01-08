@@ -188,7 +188,7 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
             [],
           ],
         },
-        styleData: { marginTop: 24, marginBottom: 24 },
+        styleData: { marginTop: 10, marginBottom: 0 },
       },
     },
     {
@@ -240,7 +240,7 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
       type: 'ExperienceTime',
       id: 'm5nhboq6_hees',
       data: {
-        propsData: { title: 'XXXX大学 - 软件工程（学士）', dateRange: '2073/07 - 2077/07' },
+        propsData: { title: 'XXXX大学 - 软件工程', dateRange: '2073/07 - 2077/07' },
         styleData: { marginTop: 0, marginBottom: 8 },
       },
     },
