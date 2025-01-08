@@ -48,7 +48,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         data: {
           propsData: {
             avatarUrl: '/avatar.jpg',
-            avatarSize: 100,
+            avatarSize: 86,
             avatarRound: true,
             name: '炭治郎',
             jobTitle: '前端开发工程师',
@@ -106,7 +106,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         id,
         data: {
           propsData: {
-            title: 'XXXX有限公司',
+            title: 'XX有限公司',
             dateRange: '2077/07 - 2080/07',
           },
           styleData: {
@@ -122,7 +122,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         data: {
           propsData: {
             content:
-              '<h3>XXXX项目 - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
+              '<h3>XX项目 - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
           },
           styleData: {
             marginTop: 0,
@@ -168,7 +168,7 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
       data: {
         propsData: {
           avatarUrl: '/avatar.jpg',
-          avatarSize: 100,
+          avatarSize: 86,
           avatarRound: true,
           name: '炭治郎',
           jobTitle: '前端开发工程师',
@@ -202,7 +202,7 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
       data: {
         propsData: {
           content:
-            '<ul><li><p>熟练掌握 <code>JavaScript</code>、<code>TypeScript</code> 语言；</p></li><li><p>熟练使用 <code>Vue</code>、<code>React</code> 开发前端应用，并掌握其基本原理；</p></li><li><p>熟练使用 <code>Vite</code>、<code>Webpack</code> 等打包工具构建应用；</p></li><li><p>熟练使用 <code>NodeJS</code>、<code>MySQL</code>、<code>Redis</code> 等技术开发后端应用；</p></li><li><p>熟悉常见算法和设计模式，有良好的编码习惯。</p></li></ul>',
+            '<ul><li><p>熟练掌握 <code>JavaScript</code>、<code>TypeScript</code> 语言；</p></li><li><p>熟练使用 <code>Vue</code>、<code>React</code> 开发前端应用，并掌握其基本原理；</p></li><li><p>熟练使用 <code>Vite</code>、<code>Webpack</code> 等打包工具构建应用；</p></li><li><p>熟练使用 <code>NodeJS</code>、<code>MySQL</code>、<code>Redis</code> 等技术开发后端应用；</p></li></ul>',
         },
         styleData: { marginTop: 0, marginBottom: 8 },
       },
@@ -216,7 +216,7 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
       type: 'ExperienceTime',
       id: 'm5nh7g2t_xcji',
       data: {
-        propsData: { title: 'XXXX有限公司', dateRange: '2077/07 - 2080/07' },
+        propsData: { title: 'XX有限公司', dateRange: '2077/07 - 2080/07' },
         styleData: { marginTop: 0, marginBottom: 8 },
       },
     },
@@ -226,7 +226,7 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
       data: {
         propsData: {
           content:
-            '<h3>XXXX项目 - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
+            '<h3>XX项目 - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
         },
         styleData: { marginTop: 0, marginBottom: 8 },
       },
@@ -240,7 +240,7 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
       type: 'ExperienceTime',
       id: 'm5nhboq6_hees',
       data: {
-        propsData: { title: 'XXXX大学 - 软件工程', dateRange: '2073/07 - 2077/07' },
+        propsData: { title: 'XX大学 - 软件工程', dateRange: '2073/07 - 2077/07' },
         styleData: { marginTop: 0, marginBottom: 8 },
       },
     },

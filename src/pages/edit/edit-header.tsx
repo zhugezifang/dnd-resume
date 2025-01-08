@@ -90,7 +90,7 @@ const EditHeader = () => {
         className="flex-center"
       >
         <span className="iconify text-2xl ri--github-fill"></span>
-        <span className="ml-1 text-sm underline">在线生成简历</span>
+        <span className="ml-1 text-sm underline">Github</span>
       </a>
 
       <div className="flex-center gap-4">
