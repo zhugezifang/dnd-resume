@@ -2,6 +2,7 @@ import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
 import { createDefaultWidgets } from '@/components/widgets/widgets-util.ts'
 import { storage } from '@/lib/utils.ts'
+import { toast } from 'sonner'
 import { create } from 'zustand'
 
 interface PageState {
@@ -25,6 +26,11 @@ const useWidgetsStore = create<PageState>()((set, get) => {
       widgets = ret.data
     } else {
       console.error(ret.error)
+      setTimeout(() => {
+        toast.error('配置文件解析失败', {
+          position: 'top-center',
+        })
+      }, 100)
     }
   } else {
     // initial data

@@ -9,6 +9,7 @@ import { decodeFromBase64Url } from '@/lib/utils'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
+import { toast } from 'sonner'
 
 const PagePreview = () => {
   /**
@@ -25,10 +26,10 @@ const PagePreview = () => {
     }
   }, [navigate])
 
+  let widgets = useWidgetsStore(state => state.widgets)
   /**
    * Get widgets data from the URL query string.
    */
-  let widgets = useWidgetsStore(state => state.widgets)
   const [searchParams] = useSearchParams()
   const data = searchParams.get('data')
   if (data) {
@@ -38,10 +39,22 @@ const PagePreview = () => {
       if (ret.success) {
         widgets = ret.data
       } else {
+        widgets = []
         console.error(ret.error)
+        setTimeout(() => {
+          toast.error('参数解析失败', {
+            position: 'top-center',
+          })
+        }, 100)
       }
     } catch (error) {
+      widgets = []
       console.error(error)
+      setTimeout(() => {
+        toast.error('参数解析失败', {
+          position: 'top-center',
+        })
+      }, 100)
     }
   }
 
