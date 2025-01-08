@@ -1,6 +1,6 @@
 import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
-import { createWidgetsNode } from '@/components/widgets/widgets-util.ts'
+import { createDefaultWidgets } from '@/components/widgets/widgets-util.ts'
 import { storage } from '@/lib/utils.ts'
 import { create } from 'zustand'
 
@@ -28,7 +28,7 @@ const useWidgetsStore = create<PageState>()((set, get) => {
     }
   } else {
     // initial data
-    widgets.push(createWidgetsNode('BasicInfo'))
+    widgets = createDefaultWidgets()
   }
   const selectedId = widgets.length ? widgets[0].id : null
 

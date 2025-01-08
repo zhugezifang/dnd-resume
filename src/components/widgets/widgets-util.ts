@@ -106,7 +106,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         id,
         data: {
           propsData: {
-            title: '腾讯科技（深圳）有限公司',
+            title: 'XXXX有限公司',
             dateRange: '2077/07 - 2080/07',
           },
           styleData: {
@@ -122,7 +122,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
         data: {
           propsData: {
             content:
-              '<h3><a target="_blank" rel="noopener noreferrer nofollow" href="https://pay.weixin.qq.com/">微信支付</a> - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
+              '<h3>XXXX项目 - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
           },
           styleData: {
             marginTop: 0,
@@ -158,4 +158,91 @@ export const createLinkItem: () => LinkItemData = () => {
     content: 'github.com',
     icon: 'RiLinksLine',
   }
+}
+
+export const createDefaultWidgets: () => WidgetNode[] = () => {
+  return [
+    {
+      type: 'BasicInfo',
+      id: 'm5nh7g2t_c08t',
+      data: {
+        propsData: {
+          avatarUrl: '/avatar.jpg',
+          avatarSize: 100,
+          avatarRound: true,
+          name: '炭治郎',
+          jobTitle: '前端开发工程师',
+          linksGroup: [
+            [
+              { href: '', content: '2050/01', icon: 'MynauiCake' },
+              { href: '', content: '15123456789', icon: 'MynauiTelephoneCall' },
+            ],
+            [
+              { href: 'https://github.com/', content: 'github.com', icon: 'LogosGithubIcon' },
+              {
+                href: 'mailto:tanjiro@gmail.com',
+                content: 'tanjiro@gmail.com',
+                icon: 'LogosGoogleGmail',
+              },
+            ],
+            [],
+          ],
+        },
+        styleData: { marginTop: 24, marginBottom: 24 },
+      },
+    },
+    {
+      type: 'TitleSection',
+      id: 'm5nhbbzu_29xe',
+      data: { propsData: { title: ' 专业技能' }, styleData: { marginTop: 8, marginBottom: 16 } },
+    },
+    {
+      type: 'TextContent',
+      id: 'm5nhe7a6_uswu',
+      data: {
+        propsData: {
+          content:
+            '<ul><li><p>熟练掌握 <code>JavaScript</code>、<code>TypeScript</code> 语言；</p></li><li><p>熟练使用 <code>Vue</code>、<code>React</code> 开发前端应用，并掌握其基本原理；</p></li><li><p>熟练使用 <code>Vite</code>、<code>Webpack</code> 等打包工具构建应用；</p></li><li><p>熟练使用 <code>NodeJS</code>、<code>MySQL</code>、<code>Redis</code> 等技术开发后端应用；</p></li><li><p>熟悉常见算法和设计模式，有良好的编码习惯。</p></li></ul>',
+        },
+        styleData: { marginTop: 0, marginBottom: 8 },
+      },
+    },
+    {
+      type: 'TitleSection',
+      id: 'm5nh7g2t_m1ad',
+      data: { propsData: { title: '工作经历' }, styleData: { marginTop: 8, marginBottom: 16 } },
+    },
+    {
+      type: 'ExperienceTime',
+      id: 'm5nh7g2t_xcji',
+      data: {
+        propsData: { title: 'XXXX有限公司', dateRange: '2077/07 - 2080/07' },
+        styleData: { marginTop: 0, marginBottom: 8 },
+      },
+    },
+    {
+      type: 'TextContent',
+      id: 'm5nh7g2t_xhk3',
+      data: {
+        propsData: {
+          content:
+            '<h3>XXXX项目 - Web 前端开发</h3><ul><li><p>负责从需求分析到前端架构设计、功能开发及性能优化的全流程开发工作。</p></li><li><p>坚持与产品、设计、后端团队紧密协作，推动敏捷开发流程和 CI/CD 工具链的落地，确保高质量的交付。</p></li><li><p>通过深入研究用户体验和前端性能，成功优化支付流程页面，提升了用户转化率和支付成功率。</p></li></ul>',
+        },
+        styleData: { marginTop: 0, marginBottom: 8 },
+      },
+    },
+    {
+      type: 'TitleSection',
+      id: 'm5nhamir_1miv',
+      data: { propsData: { title: '教育经历' }, styleData: { marginTop: 8, marginBottom: 16 } },
+    },
+    {
+      type: 'ExperienceTime',
+      id: 'm5nhboq6_hees',
+      data: {
+        propsData: { title: 'XXXX大学 - 软件工程（学士）', dateRange: '2073/07 - 2077/07' },
+        styleData: { marginTop: 0, marginBottom: 8 },
+      },
+    },
+  ]
 }
