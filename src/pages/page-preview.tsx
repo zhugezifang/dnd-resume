@@ -3,11 +3,48 @@ import { ExperienceTime } from '@/components/widgets/node/experience-time.tsx'
 import { ImageSection } from '@/components/widgets/node/image-section.tsx'
 import { TextContent } from '@/components/widgets/node/text-content.tsx'
 import { TitleSection } from '@/components/widgets/node/title-section.tsx'
+import { widgetsSchema } from '@/components/widgets/widgets-schema'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
+import { decodeFromBase64Url } from '@/lib/utils'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
+import { useEffect } from 'react'
+import { useNavigate, useSearchParams } from 'react-router'
 
 const PagePreview = () => {
-  const widgets = useWidgetsStore(state => state.widgets)
+  /**
+   * Print the page when the `PRINT` session storage is set.
+   */
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (sessionStorage.getItem('PRINT')) {
+      sessionStorage.removeItem('PRINT')
+      Promise.resolve().then(() => {
+        window.addEventListener('afterprint', () => navigate(-1), { once: true })
+        window.print()
+      })
+    }
+  }, [navigate])
+
+  /**
+   * Get widgets data from the URL query string.
+   */
+  let widgets = useWidgetsStore(state => state.widgets)
+  const [searchParams] = useSearchParams()
+  const data = searchParams.get('data')
+  if (data) {
+    try {
+      const json = decodeFromBase64Url(data)
+      const ret = widgetsSchema.safeParse(JSON.parse(json))
+      if (ret.success) {
+        widgets = ret.data
+      } else {
+        console.error(ret.error)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const WidgetRenderComponent = (item: WidgetNode) => {
     switch (item.type) {
       case 'BasicInfo':
