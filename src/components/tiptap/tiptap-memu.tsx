@@ -1,34 +1,9 @@
-import type { IconName } from '@/components/common/svg-icon.tsx'
-import { SvgIcon } from '@/components/common/svg-icon.tsx'
+import { TiptapMenuIcon } from '@/components/tiptap/tiptap-menu-icon.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { Input } from '@/components/ui/input.tsx'
 import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/popover.tsx'
 import type { Editor } from '@tiptap/react'
-import { clsx } from 'clsx'
-import React, { useState } from 'react'
-
-interface TiptapMenuIconProps extends React.HTMLAttributes<HTMLDivElement> {
-  name: IconName
-  size?: number
-  active?: boolean
-}
-
-const TiptapMenuIcon = ({ name, active, size, ...props }: TiptapMenuIconProps) => {
-  return (
-    <div
-      className={clsx(
-        'flex-center mr-2 h-7 cursor-pointer rounded px-1 hover:bg-zinc-200',
-        active && 'bg-zinc-200',
-      )}
-      {...props}
-    >
-      <SvgIcon
-        name={name}
-        size={size || 20}
-      />
-    </div>
-  )
-}
+import { useState } from 'react'
 
 interface TiptapMenuProps {
   editor: Editor
@@ -67,6 +42,32 @@ const TiptapMenu = ({ editor }: TiptapMenuProps) => {
       <div className="relative top-[0.5px] ml-1 mr-3 h-4 w-px bg-zinc-400"></div>
 
       <TiptapMenuIcon
+        name="paragraph"
+        active={editor.isActive('paragraph')}
+        onClick={() => {
+          editor.chain().focus().setParagraph().run()
+        }}
+      />
+
+      <TiptapMenuIcon
+        name="h1"
+        active={editor.isActive('heading', { level: 1 })}
+        onClick={() => editor.chain().focus().setHeading({ level: 1 }).run()}
+      />
+
+      <TiptapMenuIcon
+        name="h2"
+        active={editor.isActive('heading', { level: 2 })}
+        onClick={() => editor.chain().focus().setHeading({ level: 2 }).run()}
+      />
+
+      <TiptapMenuIcon
+        name="h3"
+        active={editor.isActive('heading', { level: 3 })}
+        onClick={() => editor.chain().focus().setHeading({ level: 3 }).run()}
+      />
+
+      <TiptapMenuIcon
         name="bullet-list"
         active={editor.isActive('bulletList')}
         onClick={() => {
@@ -82,12 +83,29 @@ const TiptapMenu = ({ editor }: TiptapMenuProps) => {
         }}
       />
 
+      <div className="relative top-[0.5px] ml-1 mr-3 h-4 w-px bg-zinc-400"></div>
+
       <TiptapMenuIcon
-        name="paragraph"
-        size={28}
-        active={editor.isActive('paragraph')}
+        name="bold"
+        active={editor.isActive('bold')}
         onClick={() => {
-          editor.chain().focus().setParagraph().run()
+          editor.chain().focus().toggleBold().run()
+        }}
+      />
+
+      <TiptapMenuIcon
+        name="italic"
+        active={editor.isActive('italic')}
+        onClick={() => {
+          editor.chain().focus().toggleItalic().run()
+        }}
+      />
+
+      <TiptapMenuIcon
+        name="strike"
+        active={editor.isActive('strike')}
+        onClick={() => {
+          editor.chain().focus().toggleStrike().run()
         }}
       />
 
@@ -132,48 +150,6 @@ const TiptapMenu = ({ editor }: TiptapMenuProps) => {
           </div>
         </PopoverContent>
       </Popover>
-
-      <TiptapMenuIcon
-        name="bold"
-        active={editor.isActive('bold')}
-        onClick={() => {
-          editor.chain().focus().toggleBold().run()
-        }}
-      />
-
-      <TiptapMenuIcon
-        name="italic"
-        active={editor.isActive('italic')}
-        onClick={() => {
-          editor.chain().focus().toggleItalic().run()
-        }}
-      />
-
-      <TiptapMenuIcon
-        name="strike"
-        active={editor.isActive('strike')}
-        onClick={() => {
-          editor.chain().focus().toggleStrike().run()
-        }}
-      />
-
-      <TiptapMenuIcon
-        name="h1"
-        active={editor.isActive('heading', { level: 1 })}
-        onClick={() => editor.chain().focus().setHeading({ level: 1 }).run()}
-      />
-
-      <TiptapMenuIcon
-        name="h2"
-        active={editor.isActive('heading', { level: 2 })}
-        onClick={() => editor.chain().focus().setHeading({ level: 2 }).run()}
-      />
-
-      <TiptapMenuIcon
-        name="h3"
-        active={editor.isActive('heading', { level: 3 })}
-        onClick={() => editor.chain().focus().setHeading({ level: 3 }).run()}
-      />
     </div>
   )
 }
