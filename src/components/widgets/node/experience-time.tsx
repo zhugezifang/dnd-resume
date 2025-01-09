@@ -8,7 +8,7 @@ const ExperienceTime = ({ data }: ExperienceTimeProps) => {
   const { title, dateRange } = data
 
   return (
-    <div className="flex h-9 items-center justify-between">
+    <div className="flex flex-wrap items-center justify-between py-1">
       <div className="text-[18px] font-semibold">{title}</div>
       <div className="font-mono text-sm text-zinc-600">{dateRange}</div>
     </div>

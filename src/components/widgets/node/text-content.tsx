@@ -9,7 +9,7 @@ const TextContent = ({ data }: TextContentProps) => {
 
   return (
     <div
-      className="tiptap flex min-h-9 flex-col justify-center"
+      className="tiptap flex flex-col justify-center"
       dangerouslySetInnerHTML={{ __html: content }}
     ></div>
   )
