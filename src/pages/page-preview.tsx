@@ -5,6 +5,7 @@ import { TextContent } from '@/components/widgets/node/text-content.tsx'
 import { TitleSection } from '@/components/widgets/node/title-section.tsx'
 import { widgetsSchema } from '@/components/widgets/widgets-schema'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
+import { getBasename } from '@/components/widgets/widgets-util.ts'
 import { decodeFromBase64Url } from '@/lib/utils'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { useEffect } from 'react'
@@ -12,20 +13,6 @@ import { useNavigate, useSearchParams } from 'react-router'
 import { toast } from 'sonner'
 
 const PagePreview = () => {
-  /**
-   * Print the page when the `PRINT` session storage is set.
-   */
-  const navigate = useNavigate()
-  useEffect(() => {
-    if (sessionStorage.getItem('PRINT')) {
-      sessionStorage.removeItem('PRINT')
-      Promise.resolve().then(() => {
-        window.addEventListener('afterprint', () => navigate(-1), { once: true })
-        window.print()
-      })
-    }
-  }, [navigate])
-
   let widgets = useWidgetsStore(state => state.widgets)
   /**
    * Get widgets data from the URL query string.
@@ -57,6 +44,31 @@ const PagePreview = () => {
       }, 100)
     }
   }
+
+  /**
+   * Print the page when the `PRINT` session storage is set.
+   */
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (sessionStorage.getItem('PRINT')) {
+      sessionStorage.removeItem('PRINT')
+      Promise.resolve().then(() => {
+        // print filename
+        const originalTitle = document.title
+        document.title = getBasename(widgets) || originalTitle
+
+        window.addEventListener(
+          'afterprint',
+          () => {
+            document.title = originalTitle
+            navigate(-1)
+          },
+          { once: true },
+        )
+        window.print()
+      })
+    }
+  }, [navigate, widgets])
 
   const WidgetRenderComponent = (item: WidgetNode) => {
     switch (item.type) {

@@ -246,3 +246,13 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
     },
   ]
 }
+
+// config or pdf file basename (without extname)
+export function getBasename(widgets: WidgetNode[]) {
+  const basicInfo = widgets.find(item => item.type === 'BasicInfo')
+  if (basicInfo) {
+    const { name, jobTitle } = basicInfo.data.propsData
+    return `${name} - ${jobTitle}`
+  }
+  return ''
+}

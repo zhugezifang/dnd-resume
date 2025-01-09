@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { widgetsSchema } from '@/components/widgets/widgets-schema'
+import { getBasename } from '@/components/widgets/widgets-util.ts'
 import { encodeToBase64Url } from '@/lib/utils.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { type ChangeEvent, useRef } from 'react'
@@ -63,7 +64,7 @@ const EditHeader = () => {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'resume-config.json'
+    a.download = (getBasename(widgets) || 'resume-config') + '.json'
     a.click()
     URL.revokeObjectURL(url)
     toast.success('成功导出配置文件', {
