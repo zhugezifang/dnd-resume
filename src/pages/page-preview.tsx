@@ -53,7 +53,7 @@ const PagePreview = () => {
   useEffect(() => {
     if (sessionStorage.getItem(S_N_PRINT)) {
       sessionStorage.removeItem(S_N_PRINT)
-      Promise.resolve().then(() => {
+      setTimeout(() => {
         // print filename
         const originalTitle = document.title
         document.title = getBasename(widgets) || originalTitle
@@ -67,7 +67,7 @@ const PagePreview = () => {
           { once: true },
         )
         window.print()
-      })
+      }, 16)
     }
   }, [navigate, widgets])
 
