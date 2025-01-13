@@ -8,9 +8,12 @@ interface ImageSectionProps {
 const ImageSection = ({ data }: ImageSectionProps) => {
   const { url, imageSize, borderRadius } = data
 
-  let sizeCls = '100%'
-  if (imageSize < MAX_IMAGE_SIZE && imageSize >= MIN_IMAGE_SIZE) {
-    sizeCls = `${imageSize}%`
+  let sizeCls = `${imageSize}%`
+  // range limit
+  if (imageSize < MIN_IMAGE_SIZE) {
+    sizeCls = `${MIN_IMAGE_SIZE}%`
+  } else if (imageSize > MAX_IMAGE_SIZE) {
+    sizeCls = `${MAX_IMAGE_SIZE}%`
   }
 
   return (
