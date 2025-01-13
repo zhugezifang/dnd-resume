@@ -86,5 +86,6 @@ export interface ImageSectionData extends CommonStyleData {
   propsData: {
     url: string
     imageSize: number
+    borderRadius: number
   }
 }

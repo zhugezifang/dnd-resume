@@ -6,7 +6,7 @@ interface ImageSectionProps {
 }
 
 const ImageSection = ({ data }: ImageSectionProps) => {
-  const { url, imageSize } = data
+  const { url, imageSize, borderRadius } = data
 
   let sizeCls = '100%'
   if (imageSize < MAX_IMAGE_SIZE && imageSize >= MIN_IMAGE_SIZE) {
@@ -16,7 +16,7 @@ const ImageSection = ({ data }: ImageSectionProps) => {
   return (
     <div className="flex-center drop-shadow-lg">
       <img
-        style={{ width: sizeCls }}
+        style={{ width: sizeCls, borderRadius }}
         src={url}
         alt="image"
         draggable="false"

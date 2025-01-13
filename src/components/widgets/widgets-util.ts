@@ -138,6 +138,7 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
           propsData: {
             url: '/image.png',
             imageSize: 100,
+            borderRadius: 0,
           },
           styleData: {
             marginTop: 0,
