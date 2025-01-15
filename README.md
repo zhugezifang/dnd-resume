@@ -1,12 +1,12 @@
-## 通过拖拽加配置快速生成简历
+## Build Resume Online
 
 ![screen shot edit](.github/screen-shot-edit.png)
 
-## 在线预览效果
+## Preview
 
 ![screen shot edit](.github/screen-shot-preview.png)
 
-## 为什么做这个工具？
+## Motivation
 
 之前没有找到喜欢的模板和好用的简历生成工具，都是手撸的 HTML 和样式，然后用浏览器自带的打印功能打印成 PDF。
 
