@@ -38,8 +38,12 @@ for (const widgetInfo of widgetMaterialList) {
   widgetMaterialMap[widgetInfo.type] = widgetInfo
 }
 
+export function generateWidgetId(): string {
+  return `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`
+}
+
 export function createWidgetsNode(type: WidgetType): WidgetNode {
-  const id = `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`
+  const id = generateWidgetId()
   switch (type) {
     case 'BasicInfo':
       return {

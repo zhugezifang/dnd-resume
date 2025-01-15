@@ -5,11 +5,24 @@ import { ImageSection } from '@/components/widgets/node/image-section.tsx'
 import { TextContent } from '@/components/widgets/node/text-content.tsx'
 import { TitleSection } from '@/components/widgets/node/title-section.tsx'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
+import { generateWidgetId } from '@/components/widgets/widgets-util.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
+import { Copy, Trash } from 'lucide-react'
 import type { MouseEvent } from 'react'
 import { memo } from 'react'
 
-function DraggableNode({ item }: { item: WidgetNode }) {
+function DraggableNode({ item, isSelected }: { item: WidgetNode; isSelected: boolean }) {
+  /**
+   * click to copy widget
+   */
+  const addWidget = useWidgetsStore(state => state.addWidget)
+  const handleClickCopy = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    const newItem = JSON.parse(JSON.stringify(item))
+    newItem.id = generateWidgetId()
+    addWidget(newItem)
+  }
+
   /**
    * click to remove widget
    */
@@ -34,18 +47,32 @@ function DraggableNode({ item }: { item: WidgetNode }) {
     }
   }
 
+  const OperationButtons = () =>
+    isSelected ? (
+      <div className="absolute right-1 top-1 flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+        <Button
+          variant="outline"
+          size="icon"
+          className="h-7 w-7"
+          onMouseDown={handleClickCopy}
+        >
+          <Copy />
+        </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className="h-7 w-7"
+          onMouseDown={handleClickRemove}
+        >
+          <Trash />
+        </Button>
+      </div>
+    ) : null
+
   return (
     <div style={item.data.styleData}>
-      {WidgetRenderComponent()}
-
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-1 top-1 h-7 w-7 opacity-0 transition-opacity group-hover:opacity-100"
-        onMouseDown={handleClickRemove}
-      >
-        <div className="iconify text-lg ri--delete-bin-line"></div>
-      </Button>
+      <WidgetRenderComponent />
+      <OperationButtons />
     </div>
   )
 }

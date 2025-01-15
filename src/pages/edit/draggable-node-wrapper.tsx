@@ -43,7 +43,10 @@ function DraggableNodeWrapper({ item, isSelected }: ReorderItemProps) {
       onMouseDown={handleClickItem}
       className={clsx('group relative flow-root cursor-move bg-white transition-shadow', getCls())}
     >
-      <DraggableNode item={item} />
+      <DraggableNode
+        item={item}
+        isSelected={isSelected}
+      />
     </li>
   )
 }
