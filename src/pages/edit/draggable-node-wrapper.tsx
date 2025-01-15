@@ -7,10 +7,14 @@ import { clsx } from 'clsx'
 
 interface ReorderItemProps {
   item: WidgetNode
-  isSelected: boolean
 }
 
-function DraggableNodeWrapper({ item, isSelected }: ReorderItemProps) {
+function DraggableNodeWrapper({ item }: ReorderItemProps) {
+  // because of useSortable, this comp always re-render when panel-dnd re-render,
+  // so I put selectedId here, to reduce panel-dnd re-render times
+  const selectedId = useWidgetsStore(state => state.selectedId)
+  const isSelected = selectedId === item.id
+
   /**
    * dnd logic
    */

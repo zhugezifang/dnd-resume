@@ -16,15 +16,13 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
-import { useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
-const PanelDnd = () => {
-  const { widgets, setWidgets, selectedId, setSelectedId } = useWidgetsStore(
+function PanelDnd() {
+  const { widgets, setWidgets, setSelectedId } = useWidgetsStore(
     useShallow(state => ({
       widgets: state.widgets,
       setWidgets: state.setWidgets,
-      selectedId: state.selectedId,
       setSelectedId: state.setSelectedId,
     })),
   )
@@ -55,21 +53,6 @@ const PanelDnd = () => {
     }
   }
 
-  /**
-   * auto scroll selected widget into view
-   */
-  useEffect(() => {
-    if (!selectedId) return
-    const element = document.getElementById(selectedId)
-    if (!element) return
-
-    const rect = element.getBoundingClientRect()
-    const inView = rect.top >= 68 && rect.bottom <= window.innerHeight - 16
-    if (!inView) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    }
-  }, [selectedId])
-
   return (
     <ul className="print-wrapper relative rounded-2xl border">
       <DndContext
@@ -86,7 +69,6 @@ const PanelDnd = () => {
             <DraggableNodeWrapper
               key={item.id}
               item={item}
-              isSelected={item.id === selectedId}
             />
           ))}
         </SortableContext>

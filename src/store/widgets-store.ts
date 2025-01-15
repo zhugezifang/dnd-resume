@@ -98,4 +98,25 @@ const useWidgetsStore = create<PageState>()((set, get) => {
   }
 })
 
+/**
+ * auto scroll selected widget into view
+ */
+useWidgetsStore.subscribe((state, prevState) => {
+  const { selectedId } = state
+  if (!selectedId) return
+  if (selectedId === prevState.selectedId) return
+
+  // wait react render, or use hooks but more complex
+  setTimeout(() => {
+    const element = document.getElementById(selectedId)
+    if (!element) return
+
+    const rect = element.getBoundingClientRect()
+    const inView = rect.top >= 68 && rect.bottom <= window.innerHeight - 16
+    if (!inView) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  })
+})
+
 export { useWidgetsStore }
