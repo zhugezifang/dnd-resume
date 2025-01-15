@@ -55,8 +55,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@iconify-json/ri": "^1.2.5",
-    "@iconify/tailwind": "^1.2.0",
     "@types/node": "^22.10.2",
     "@types/pako": "^2.0.3",
     "@types/react": "^19.0.2",

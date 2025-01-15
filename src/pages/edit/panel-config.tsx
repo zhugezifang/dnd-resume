@@ -1,3 +1,4 @@
+import { LayoutFill } from '@/components/common/svg-icons.tsx'
 import { BasicInfoForm } from '@/components/widgets/form/basic-info-form.tsx'
 import { ExperienceTimeForm } from '@/components/widgets/form/experience-time-form.tsx'
 import { ImageSectionForm } from '@/components/widgets/form/image-section-form.tsx'
@@ -5,9 +6,8 @@ import { StyleForm } from '@/components/widgets/form/style-form.tsx'
 import { TextContentForm } from '@/components/widgets/form/text-content-form.tsx'
 import { TitleSectionForm } from '@/components/widgets/form/title-section-form.tsx'
 import type { StyleData } from '@/components/widgets/widgets-type'
-import { widgetMaterialMap } from '@/components/widgets/widgets-util.ts'
+import { widgetMaterialMap } from '@/components/widgets/widgets-util.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
-import { clsx } from 'clsx'
 import { produce } from 'immer'
 import invariant from 'tiny-invariant'
 
@@ -85,14 +85,17 @@ const PanelConfig = () => {
 
   return (
     <div className="p-4">
-      <div className="flex items-center">
-        <span className={clsx(widgetMaterialInfo.icon, 'h-4 w-4')}></span>
+      <div className="flex items-center text-xl">
+        {widgetMaterialInfo.icon}
         <span className="ml-2 text-xl font-medium">{widgetMaterialInfo.title}</span>
       </div>
       {FormComponent}
 
       <div className="mt-4 flex items-center">
-        <span className="iconify h-4 w-4 ri--layout-2-fill"></span>
+        <LayoutFill
+          width={20}
+          height={20}
+        />
         <span className="ml-2 text-xl font-medium">样式布局</span>
       </div>
       <StyleForm

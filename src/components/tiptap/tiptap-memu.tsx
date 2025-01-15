@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button.tsx'
 import { Input } from '@/components/ui/input.tsx'
 import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/popover.tsx'
 import type { Editor } from '@tiptap/react'
+import { Check } from 'lucide-react'
 import { useState } from 'react'
 
 interface TiptapMenuProps {
@@ -145,7 +146,7 @@ const TiptapMenu = ({ editor }: TiptapMenuProps) => {
               size="icon"
               onClick={handleSaveLink}
             >
-              <span className="iconify text-lg ri--check-line"></span>
+              <Check strokeWidth={3} />
             </Button>
           </div>
         </PopoverContent>

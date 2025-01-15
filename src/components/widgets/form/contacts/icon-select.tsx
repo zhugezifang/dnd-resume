@@ -1,10 +1,11 @@
-import { LinkIconComponent, linkIconNames } from '@/components/common/link-icons.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover.tsx'
+import type { LinkIconNames } from '@/components/widgets/link-icon.tsx'
+import { LinkIconComponent, linkIconNames } from '@/components/widgets/link-icon.tsx'
 
 interface LinkIconSelectProps {
   value: string
-  onChange: (value: string) => void
+  onChange: (value: LinkIconNames) => void
   className?: string
 }
 
@@ -25,15 +26,15 @@ const IconSelect = ({ value, onChange, className }: LinkIconSelectProps) => {
         align="start"
       >
         <div className="flex flex-wrap justify-between">
-          {linkIconNames.map(item => (
+          {linkIconNames.map(name => (
             <Button
-              key={item}
+              key={name}
               variant="outline"
               size="icon"
               className="mb-2"
-              onClick={() => onChange(item)}
+              onClick={() => onChange(name)}
             >
-              {LinkIconComponent(item)}
+              {LinkIconComponent(name)}
             </Button>
           ))}
         </div>

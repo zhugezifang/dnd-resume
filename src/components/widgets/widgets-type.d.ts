@@ -1,3 +1,5 @@
+import Element = React.JSX.Element
+
 export type WidgetType =
   | 'BasicInfo'
   | 'TitleSection'
@@ -7,7 +9,7 @@ export type WidgetType =
 
 export interface WidgetMaterial {
   type: WidgetType
-  icon: string
+  icon: Element
   title: string
 }
 

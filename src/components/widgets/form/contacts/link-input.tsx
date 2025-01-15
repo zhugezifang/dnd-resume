@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button.tsx'
 import { Input } from '@/components/ui/input.tsx'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover.tsx'
+import { Link } from 'lucide-react'
 
 interface LinkInputProps {
   value: string
@@ -17,7 +18,7 @@ const LinkInput = ({ value, onChange, className }: LinkInputProps) => {
           variant="outline"
           size="icon"
         >
-          <span className="iconify ri--links-line"></span>
+          <Link />
         </Button>
       </PopoverTrigger>
       <PopoverContent

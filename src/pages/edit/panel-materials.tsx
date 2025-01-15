@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button.tsx'
 import type { WidgetType } from '@/components/widgets/widgets-type'
-import { createWidgetsNode, widgetMaterialList } from '@/components/widgets/widgets-util.ts'
+import { createWidgetsNode, widgetMaterialList } from '@/components/widgets/widgets-util.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
-import { clsx } from 'clsx'
+import { Plus } from 'lucide-react'
 
 const PanelMaterials = () => {
   // click to add widget
@@ -25,11 +25,11 @@ const PanelMaterials = () => {
             className="w-full justify-between"
           >
             <span className="flex-center">
-              <span className={clsx(item.icon, 'mr-2 h-4 w-4')}></span>
-              <span>{item.title}</span>
+              {item.icon}
+              <span className="ml-2">{item.title}</span>
             </span>
-            <span className="iconify ri--add-line"></span>
-          </Button>{' '}
+            <Plus style={{ width: 13, height: 13 }} />
+          </Button>
         </li>
       ))}
     </ul>

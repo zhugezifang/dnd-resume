@@ -108,4 +108,9 @@
   .scroll-thin {
     scrollbar-width: thin;
   }
+
+  .icon-size {
+    width: 1em;
+    height: 1em;
+  }
 }

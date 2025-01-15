@@ -1,6 +1,6 @@
 import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
-import { createDefaultWidgets } from '@/components/widgets/widgets-util.ts'
+import { createDefaultWidgets } from '@/components/widgets/widgets-util.tsx'
 import { S_N_WIDGET } from '@/const/storage.ts'
 import { storage } from '@/lib/utils.ts'
 import { toast } from 'sonner'

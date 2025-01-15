@@ -1,4 +1,4 @@
-import { LinkIconComponent } from '@/components/common/link-icons.tsx'
+import { LinkIconComponent } from '@/components/widgets/link-icon.tsx'
 import type { BasicInfoData } from '@/components/widgets/widgets-type.d.ts'
 import { clsx } from 'clsx'
 

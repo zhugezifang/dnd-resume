@@ -1,3 +1,4 @@
+import { LogoGithub } from '@/components/common/svg-icons.tsx'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,7 +12,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { widgetsSchema } from '@/components/widgets/widgets-schema'
-import { getBasename } from '@/components/widgets/widgets-util.ts'
+import { getBasename } from '@/components/widgets/widgets-util.tsx'
 import { encodeToBase64Url } from '@/lib/utils.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { type ChangeEvent, useRef } from 'react'
@@ -87,7 +88,10 @@ const EditHeader = () => {
         target="_blank"
         className="flex-center"
       >
-        <span className="iconify text-2xl ri--github-fill"></span>
+        <LogoGithub
+          width={20}
+          height={20}
+        />
         <span className="ml-1 text-sm underline">Github</span>
       </a>
 

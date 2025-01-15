@@ -4,31 +4,32 @@ import type {
   WidgetNode,
   WidgetType,
 } from '@/components/widgets/widgets-type.d.ts'
+import { CalendarRange, Heading, Image, Type, User } from 'lucide-react'
 
 export const widgetMaterialList: WidgetMaterial[] = [
   {
     type: 'BasicInfo',
-    icon: 'iconify ri--user-3-line',
+    icon: <User className="icon-size" />,
     title: '基本信息',
   },
   {
     type: 'TitleSection',
-    icon: 'iconify ri--heading',
+    icon: <Heading className="icon-size" />,
     title: '标题',
   },
   {
     type: 'ExperienceTime',
-    icon: 'iconify ri--calendar-todo-line',
+    icon: <CalendarRange className="icon-size" />,
     title: '经历',
   },
   {
     type: 'TextContent',
-    icon: 'iconify ri--ai-generate-text',
+    icon: <Type className="icon-size" />,
     title: '文本',
   },
   {
     type: 'ImageSection',
-    icon: 'iconify ri--image-line',
+    icon: <Image className="icon-size" />,
     title: '图片',
   },
 ]
@@ -61,24 +62,24 @@ export function createWidgetsNode(type: WidgetType): WidgetNode {
                 {
                   href: '',
                   content: '2050/01',
-                  icon: 'MynauiCake',
+                  icon: 'cake',
                 },
                 {
                   href: '',
                   content: '15123456789',
-                  icon: 'MynauiTelephoneCall',
+                  icon: 'phone',
                 },
               ],
               [
                 {
                   href: 'https://github.com/',
                   content: 'github.com',
-                  icon: 'LogosGithubIcon',
+                  icon: 'github',
                 },
                 {
                   href: 'mailto:tanjiro@gmail.com',
                   content: 'tanjiro@gmail.com',
-                  icon: 'LogosGoogleGmail',
+                  icon: 'gmail',
                 },
               ],
               [],
@@ -161,7 +162,7 @@ export const createLinkItem: () => LinkItemData = () => {
   return {
     href: 'https://github.com/',
     content: 'github.com',
-    icon: 'RiLinksLine',
+    icon: 'link',
   }
 }
 
@@ -179,15 +180,15 @@ export const createDefaultWidgets: () => WidgetNode[] = () => {
           jobTitle: '前端开发工程师',
           linksGroup: [
             [
-              { href: '', content: '2050/01', icon: 'MynauiCake' },
-              { href: '', content: '15123456789', icon: 'MynauiTelephoneCall' },
+              { href: '', content: '2050/01', icon: 'cake' },
+              { href: '', content: '15123456789', icon: 'phone' },
             ],
             [
-              { href: 'https://github.com/', content: 'github.com', icon: 'LogosGithubIcon' },
+              { href: 'https://github.com/', content: 'github.com', icon: 'github' },
               {
                 href: 'mailto:tanjiro@gmail.com',
                 content: 'tanjiro@gmail.com',
-                icon: 'LogosGoogleGmail',
+                icon: 'gmail',
               },
             ],
             [],

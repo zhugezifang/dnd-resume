@@ -11,6 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog.tsx'
 import type { TextContentData } from '@/components/widgets/widgets-type.d.ts'
+import { UserPen } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 const TextContentForm = ({
@@ -66,7 +67,7 @@ const TextContentForm = ({
               variant="outline"
               className="w-full"
             >
-              <span className="iconify ri--edit-line"></span>
+              <UserPen />
               编辑内容
             </Button>
           </DialogTrigger>
