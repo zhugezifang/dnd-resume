@@ -9,7 +9,7 @@ const ExperienceTime = ({ data }: ExperienceTimeProps) => {
 
   return (
     <div className="flex flex-wrap items-center justify-between py-1">
-      <div className="text-[18px] font-semibold">{title}</div>
+      <div className="text-[18px] font-medium">{title}</div>
       <div className="font-mono text-sm text-zinc-600">{dateRange}</div>
     </div>
   )
