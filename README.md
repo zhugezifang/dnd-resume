@@ -1,5 +1,6 @@
 <div align="center">
   <h2>Build Your Resume Online</h2>
+  <p>dnd-resume is a free and open-source resume builder.</p>
   <img src=".github/1.png" alt="edit">
 
   <h2>Preview</h2>
