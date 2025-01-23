@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button.tsx'
 import type { WidgetType } from '@/components/widgets/widgets-type'
-import { createWidgetsNode, widgetMaterialList } from '@/components/widgets/widgets-util.tsx'
+import { createWidgetsNode, useWidgetMaterialList } from '@/components/widgets/widgets-util.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { Plus } from 'lucide-react'
 
 const PanelMaterials = () => {
+  const widgetMaterialList = useWidgetMaterialList()
   // click to add widget
   const addWidget = useWidgetsStore(state => state.addWidget)
   const handleClick = (type: WidgetType) => {

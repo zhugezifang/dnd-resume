@@ -6,12 +6,15 @@ import { StyleForm } from '@/components/widgets/form/style-form.tsx'
 import { TextContentForm } from '@/components/widgets/form/text-content-form.tsx'
 import { TitleSectionForm } from '@/components/widgets/form/title-section-form.tsx'
 import type { StyleData } from '@/components/widgets/widgets-type'
-import { widgetMaterialMap } from '@/components/widgets/widgets-util.tsx'
+import { useWidgetMaterialList } from '@/components/widgets/widgets-util.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { produce } from 'immer'
+import { useTranslation } from 'react-i18next'
 import invariant from 'tiny-invariant'
 
 const PanelConfig = () => {
+  const { t } = useTranslation()
+  const list = useWidgetMaterialList()
   const widgets = useWidgetsStore(state => state.widgets)
   const setWidgets = useWidgetsStore(state => state.setWidgets)
 
@@ -21,7 +24,8 @@ const PanelConfig = () => {
   /**
    * widget form
    */
-  const widgetMaterialInfo = widgetMaterialMap[selectedWidget.type]
+  const widgetMaterialInfo = list.find(item => item.type === selectedWidget.type)
+  invariant(widgetMaterialInfo)
   const onDataChange = (data: any) => {
     const newWidgets = widgets.map(item => {
       if (item.id === selectedWidget.id) {
@@ -96,7 +100,7 @@ const PanelConfig = () => {
           width={20}
           height={20}
         />
-        <span className="ml-2 text-xl font-medium">样式布局</span>
+        <span className="ml-2 text-xl font-medium">{t('form.styleLayout')}</span>
       </div>
       <StyleForm
         styleData={selectedWidget.data.styleData}

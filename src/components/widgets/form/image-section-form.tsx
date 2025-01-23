@@ -3,6 +3,7 @@ import { Slider } from '@/components/ui/slider'
 import type { ImageSectionData } from '@/components/widgets/widgets-type.d.ts'
 import { MAX_IMAGE_BR, MAX_IMAGE_SIZE, MIN_IMAGE_BR, MIN_IMAGE_SIZE } from '@/const/dom.ts'
 import type { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ImageSectionForm = ({
   data,
@@ -11,6 +12,7 @@ const ImageSectionForm = ({
   data: ImageSectionData
   onChange: (value: ImageSectionData) => void
 }) => {
+  const { t } = useTranslation()
   const { propsData } = data
   const { url, imageSize, borderRadius } = propsData
 
@@ -38,22 +40,22 @@ const ImageSectionForm = ({
 
   return (
     <div>
-      {/* 图片 */}
+      {/* Image URL */}
       <div>
         <div className="form-label">
-          <span>图片地址</span>
+          <span>{t('form.imageUrl')}</span>
         </div>
         <Input
           name="url"
           value={url}
-          placeholder="输入图片地址"
+          placeholder={t('form.enterImageUrl')}
           onChange={handleEventChange}
         />
       </div>
-      {/* 图片大小 */}
+      {/* Image Size */}
       <div>
         <div className="form-label">
-          <span>图片大小（百分比）</span>
+          <span>{t('form.imageSize')}</span>
         </div>
         <div className="flex items-center">
           <Input
@@ -74,10 +76,10 @@ const ImageSectionForm = ({
           />
         </div>
       </div>
-      {/* 图片圆角 */}
+      {/* Border Radius */}
       <div>
         <div className="form-label">
-          <span>图片圆角</span>
+          <span>{t('form.borderRadius')}</span>
         </div>
         <div className="flex items-center">
           <Input

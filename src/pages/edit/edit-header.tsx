@@ -16,10 +16,12 @@ import { getBasename } from '@/components/widgets/widgets-util.tsx'
 import { encodeToBase64Url } from '@/lib/utils.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { type ChangeEvent, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { toast } from 'sonner'
 
 const EditHeader = () => {
+  const { t } = useTranslation()
   const widgets = useWidgetsStore(state => state.widgets)
   const resetWidgets = useWidgetsStore(state => state.resetWidgets)
   const setWidgets = useWidgetsStore(state => state.setWidgets)
@@ -39,18 +41,18 @@ const EditHeader = () => {
             const importedWidgets = ret.data
             setWidgets(importedWidgets)
             setSelectedId(importedWidgets.length ? importedWidgets[0].id : '')
-            toast.success('成功导入配置文件', {
+            toast.success(t('Successfully imported configuration file'), {
               position: 'top-center',
             })
           } else {
             console.error(ret.error)
-            toast.error('配置文件解析失败', {
+            toast.error(t('message.parseError'), {
               position: 'top-center',
             })
           }
         } catch (error) {
           console.error(error)
-          toast.error('配置文件解析失败', {
+          toast.error(t('message.parseError'), {
             position: 'top-center',
           })
         }
@@ -108,7 +110,7 @@ const EditHeader = () => {
           size="sm"
           onClick={() => inputRef.current?.click()}
         >
-          导入配置
+          {t('common.importConfig')}
         </Button>
 
         <Button
@@ -116,7 +118,7 @@ const EditHeader = () => {
           size="sm"
           onClick={handleClickExport}
         >
-          导出配置
+          {t('common.exportConfig')}
         </Button>
 
         <AlertDialog>
@@ -125,17 +127,17 @@ const EditHeader = () => {
               variant="outline"
               size="sm"
             >
-              重置
+              {t('common.reset')}
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>确认重置？</AlertDialogTitle>
-              <AlertDialogDescription>重置后数据不可恢复。</AlertDialogDescription>
+              <AlertDialogTitle>{t('message.confirmReset')}</AlertDialogTitle>
+              <AlertDialogDescription>{t('message.resetWarning')}</AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>取消</AlertDialogCancel>
-              <AlertDialogAction onClick={resetWidgets}>确认</AlertDialogAction>
+              <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
+              <AlertDialogAction onClick={resetWidgets}>{t('common.confirm')}</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
@@ -147,13 +149,13 @@ const EditHeader = () => {
           size="sm"
           onClick={handleClickPreview}
         >
-          预览
+          {t('common.preview')}
         </Button>
         <Button
           size="sm"
           onClick={handleClickPrint}
         >
-          打印
+          {t('common.print')}
         </Button>
       </div>
     </div>

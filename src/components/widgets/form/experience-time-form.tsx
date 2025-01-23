@@ -1,6 +1,7 @@
 import { Input } from '@/components/ui/input.tsx'
 import type { ExperienceTimeData } from '@/components/widgets/widgets-type.d.ts'
 import type { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ExperienceTimeForm = ({
   data,
@@ -9,6 +10,7 @@ const ExperienceTimeForm = ({
   data: ExperienceTimeData
   onChange: (value: ExperienceTimeData) => void
 }) => {
+  const { t } = useTranslation()
   const { propsData } = data
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,27 +27,26 @@ const ExperienceTimeForm = ({
 
   return (
     <div>
-      {/* 经历内容 */}
       <div>
         <div className="form-label">
-          <span>经历内容</span>
+          <span>{t('form.experienceContent')}</span>
         </div>
         <Input
           name="title"
           value={propsData.title}
-          placeholder="输入经历"
+          placeholder={t('form.enterExperience')}
           onChange={handleChange}
         />
       </div>
-      {/* 起止时间 */}
+
       <div>
         <div className="form-label">
-          <span>起止时间</span>
+          <span>{t('form.timeRange')}</span>
         </div>
         <Input
           name="dateRange"
           value={propsData.dateRange}
-          placeholder="输入起止时间"
+          placeholder={t('form.enterTimeRange')}
           onChange={handleChange}
         />
       </div>

@@ -1,3 +1,5 @@
+export const S_N_LANG = 'LANGUAGE'
+
 // Store the json data of the widgets
 export const S_N_WIDGET = 'WIDGET'
 

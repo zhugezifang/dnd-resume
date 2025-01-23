@@ -1,7 +1,8 @@
 import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
-import { createDefaultWidgets } from '@/components/widgets/widgets-util.tsx'
+import { createDefaultData } from '@/components/widgets/widgets-util.tsx'
 import { S_N_WIDGET } from '@/const/storage.ts'
+import i18n from '@/i18n'
 import { storage } from '@/lib/utils.ts'
 import { toast } from 'sonner'
 import { create } from 'zustand'
@@ -28,14 +29,14 @@ const useWidgetsStore = create<PageState>()((set, get) => {
     } else {
       console.error(ret.error)
       setTimeout(() => {
-        toast.error('配置文件解析失败', {
+        toast.error(i18n.t('message.parseError'), {
           position: 'top-center',
         })
       }, 100)
     }
   } else {
     // initial data
-    widgets = createDefaultWidgets()
+    widgets = createDefaultData()
   }
   const selectedId = widgets.length ? widgets[0].id : null
 
@@ -73,11 +74,11 @@ const useWidgetsStore = create<PageState>()((set, get) => {
         const newWidgets = widgets.filter(widget => widget.id !== id)
         const selectedId =
           newWidgets.length === 0
-            ? null // 最后一个删除了
+            ? null // Last one deleted
             : newWidgets.length > index
-              ? newWidgets[index].id // 聚焦到下一个
+              ? newWidgets[index].id // Focus on next widget
               : newWidgets.length === index
-                ? newWidgets[index - 1].id // 删除的是最后一个
+                ? newWidgets[index - 1].id // Deleted the last one
                 : null
         storage.set(S_N_WIDGET, newWidgets)
         return {

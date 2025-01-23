@@ -11,7 +11,7 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
 
   return (
     <div className="flex-center py-5">
-      {/* 头像 */}
+      {/* Avatar */}
       {avatarUrl ? (
         <img
           src={avatarUrl}
@@ -23,12 +23,12 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
         />
       ) : null}
       <div className="basis-0">
-        {/* 姓名、职位 */}
+        {/* Name & Position */}
         <div className="mb-1 flex items-end whitespace-nowrap">
           <span className="mr-3 text-2xl font-semibold">{name}</span>
           <span className="text-[17px]">{jobTitle}</span>
         </div>
-        {/* 链接、联系方式 */}
+        {/* Links & Contact Info */}
         <ul>
           {linksGroup.map((links, groupIndex) => (
             <li key={groupIndex}>

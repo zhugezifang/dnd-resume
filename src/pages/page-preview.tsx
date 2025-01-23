@@ -12,8 +12,10 @@ import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 
 const PagePreview = () => {
+  const { t } = useTranslation()
   let widgets = useWidgetsStore(state => state.widgets)
   /**
    * Get widgets data from the URL query string.
@@ -30,7 +32,7 @@ const PagePreview = () => {
         widgets = []
         console.error(ret.error)
         setTimeout(() => {
-          toast.error('参数解析失败', {
+          toast.error(t('message.parameterError'), {
             position: 'top-center',
           })
         }, 100)
@@ -39,7 +41,7 @@ const PagePreview = () => {
       widgets = []
       console.error(error)
       setTimeout(() => {
-        toast.error('参数解析失败', {
+        toast.error(t('message.parameterError'), {
           position: 'top-center',
         })
       }, 100)

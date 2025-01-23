@@ -3,6 +3,7 @@ import { Slider } from '@/components/ui/slider'
 import type { StyleData } from '@/components/widgets/widgets-type'
 import { MAX_MARGIN_VAL, MIN_MARGIN_VAL } from '@/const/dom.ts'
 import type { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface StyleFormProps {
   styleData: StyleData
@@ -10,6 +11,8 @@ interface StyleFormProps {
 }
 
 function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
+  const { t } = useTranslation()
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
@@ -30,7 +33,7 @@ function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
     <ul>
       <li>
         <div className="form-label">
-          <span>上边距</span>
+          <span>{t('form.marginTop')}</span>
         </div>
         <div className="flex items-center">
           <Input
@@ -52,7 +55,7 @@ function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
       </li>
       <li>
         <div className="form-label">
-          <span>下边距</span>
+          <span>{t('form.marginBottom')}</span>
         </div>
         <div className="flex items-center">
           <Input

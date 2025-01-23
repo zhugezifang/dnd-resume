@@ -13,6 +13,7 @@ import {
 import type { TextContentData } from '@/components/widgets/widgets-type.d.ts'
 import { UserPen } from 'lucide-react'
 import { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const TextContentForm = ({
   data,
@@ -21,6 +22,7 @@ const TextContentForm = ({
   data: TextContentData
   onChange: (value: TextContentData) => void
 }) => {
+  const { t } = useTranslation()
   const { propsData } = data
 
   const [content, setContent] = useState('')
@@ -51,13 +53,13 @@ const TextContentForm = ({
 
   return (
     <div>
-      {/* 文本内容 */}
+      {/* Text Content */}
       <div>
         <div className="form-label">
-          <span>文本内容</span>
+          <span>{t('form.textContent')}</span>
         </div>
 
-        {/* 编辑富文本 */}
+        {/* Edit Rich Text */}
         <Dialog
           open={open}
           onOpenChange={handleOpenChange}
@@ -68,7 +70,7 @@ const TextContentForm = ({
               className="w-full"
             >
               <UserPen />
-              编辑内容
+              {t('form.editContent')}
             </Button>
           </DialogTrigger>
 
@@ -77,11 +79,11 @@ const TextContentForm = ({
             onEscapeKeyDown={e => e.preventDefault()}
           >
             <DialogHeader>
-              <DialogTitle>文本内容</DialogTitle>
+              <DialogTitle>{t('form.textContent')}</DialogTitle>
               <DialogDescription></DialogDescription>
             </DialogHeader>
 
-            {/* 富文本编辑器 */}
+            {/* Rich Text Editor */}
             <div className="h-[320px]">
               <TiptapEditor
                 ref={editorRef}
@@ -89,7 +91,7 @@ const TextContentForm = ({
               />
             </div>
             <DialogFooter>
-              <Button onClick={handleSave}>保存内容</Button>
+              <Button onClick={handleSave}>{t('Save')}</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>

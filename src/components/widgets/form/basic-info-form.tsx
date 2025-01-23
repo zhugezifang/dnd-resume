@@ -6,6 +6,7 @@ import type { BasicInfoData, LinkItemData } from '@/components/widgets/widgets-t
 import { MAX_AVATAR_SIZE, MIN_AVATAR_SIZE } from '@/const/dom.ts'
 import { produce } from 'immer'
 import type { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const BasicInfoForm = ({
   data,
@@ -14,6 +15,7 @@ const BasicInfoForm = ({
   data: BasicInfoData
   onChange: (value: BasicInfoData) => void
 }) => {
+  const { t } = useTranslation()
   const { propsData } = data
   const { avatarUrl, avatarSize, avatarRound, name, jobTitle, linksGroup } = propsData
 
@@ -63,17 +65,17 @@ const BasicInfoForm = ({
 
   return (
     <div>
-      {/* 头像地址 */}
+      {/* Avatar URL */}
       <div>
         <div className="form-label">
-          <span>头像地址</span>
+          <span>{t('form.avatarUrl')}</span>
         </div>
         <div className="flex items-center justify-between">
           <Input
             className="mr-4 w-32"
             name="avatarUrl"
             value={avatarUrl}
-            placeholder="输入头像地址"
+            placeholder={t('form.enterAvatarUrl')}
             onChange={handleChange}
           />
           <AvatarRoundedSelect
@@ -83,10 +85,10 @@ const BasicInfoForm = ({
           />
         </div>
       </div>
-      {/* 头像尺寸 */}
+      {/* Avatar Size */}
       <div>
         <div className="form-label">
-          <span>头像尺寸</span>
+          <span>{t('form.avatarSize')}</span>
         </div>
         <div className="flex items-center">
           <Input
@@ -107,48 +109,48 @@ const BasicInfoForm = ({
           />
         </div>
       </div>
-      {/* 姓名 */}
+      {/* Name */}
       <div>
         <div className="form-label">
-          <span>姓名</span>
+          <span>{t('form.name')}</span>
         </div>
         <Input
           name="name"
           value={name}
-          placeholder="输入姓名"
+          placeholder={t('form.enterName')}
           onChange={handleChange}
         />
       </div>
-      {/* 职位 */}
+      {/* Position */}
       <div>
         <div className="form-label">
-          <span>职位</span>
+          <span>{t('form.position')}</span>
         </div>
         <Input
           name="jobTitle"
           value={jobTitle}
-          placeholder="输入职位"
+          placeholder={t('form.enterPosition')}
           onChange={handleChange}
         />
       </div>
-      {/* 联系方式 */}
+      {/* Contact Information */}
       <div>
         <div className="form-label">
-          <span>联系方式（第一行）</span>
+          <span>{t('form.contactInfo1')}</span>
         </div>
         <ContactsForm
           data={linksGroup[0]}
           onChange={data => handleLinkGroupChange(0, data)}
         />
         <div className="form-label">
-          <span>联系方式（第二行）</span>
+          <span>{t('form.contactInfo2')}</span>
         </div>
         <ContactsForm
           data={linksGroup[1]}
           onChange={data => handleLinkGroupChange(1, data)}
         />
         <div className="form-label">
-          <span>联系方式（第三行）</span>
+          <span>{t('form.contactInfo3')}</span>
         </div>
         <ContactsForm
           data={linksGroup[2]}

@@ -5,12 +5,15 @@ import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/popover.
 import type { Editor } from '@tiptap/react'
 import { Check } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface TiptapMenuProps {
   editor: Editor
 }
 
 const TiptapMenu = ({ editor }: TiptapMenuProps) => {
+  const { t } = useTranslation()
+
   const [isLinkOpen, setIsLinkOpen] = useState(false)
   const [linkContent, setLinkContent] = useState<string>('')
   const handleClickLink = () => {
@@ -139,7 +142,7 @@ const TiptapMenu = ({ editor }: TiptapMenuProps) => {
             <Input
               value={linkContent}
               onChange={e => setLinkContent(e.target.value)}
-              placeholder="输入链接地址"
+              placeholder={t('form.enterLink')}
             />
             <Button
               className="ml-2 shrink-0"

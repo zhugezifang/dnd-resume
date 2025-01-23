@@ -1,6 +1,7 @@
 import { Input } from '@/components/ui/input.tsx'
 import type { TitleSectionData } from '@/components/widgets/widgets-type.d.ts'
 import type { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const TitleSectionForm = ({
   data,
@@ -9,6 +10,7 @@ const TitleSectionForm = ({
   data: TitleSectionData
   onChange: (value: TitleSectionData) => void
 }) => {
+  const { t } = useTranslation()
   const { propsData } = data
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,15 +27,15 @@ const TitleSectionForm = ({
 
   return (
     <div>
-      {/* 标题 */}
+      {/* Title */}
       <div>
         <div className="form-label">
-          <span>标题内容</span>
+          <span>{t('form.titleContent')}</span>
         </div>
         <Input
           name="title"
           value={propsData.title}
-          placeholder="输入标题内容"
+          placeholder={t('form.enterTitle')}
           onChange={handleChange}
         />
       </div>
