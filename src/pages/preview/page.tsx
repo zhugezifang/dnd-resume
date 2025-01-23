@@ -5,17 +5,13 @@ import { TextContent } from '@/components/widgets/node/text-content.tsx'
 import { TitleSection } from '@/components/widgets/node/title-section.tsx'
 import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
-import { getBasename } from '@/components/widgets/widgets-util.tsx'
-import { S_N_PRINT } from '@/const/storage.ts'
+import i18n from '@/i18n'
 import { decodeFromBase64Url } from '@/lib/utils.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
-import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useNavigate, useSearchParams } from 'react-router'
+import { useSearchParams } from 'react-router'
 import { toast } from 'sonner'
 
 const PagePreview = () => {
-  const { t } = useTranslation()
   let widgets = useWidgetsStore(state => state.widgets)
   /**
    * Get widgets data from the URL query string.
@@ -32,7 +28,7 @@ const PagePreview = () => {
         widgets = []
         console.error(ret.error)
         setTimeout(() => {
-          toast.error(t('message.parameterError'), {
+          toast.error(i18n.t('message.parameterError'), {
             position: 'top-center',
           })
         }, 100)
@@ -41,37 +37,12 @@ const PagePreview = () => {
       widgets = []
       console.error(error)
       setTimeout(() => {
-        toast.error(t('message.parameterError'), {
+        toast.error(i18n.t('message.parameterError'), {
           position: 'top-center',
         })
       }, 100)
     }
   }
-
-  /**
-   * Print the page when the `PRINT` session storage is set.
-   */
-  const navigate = useNavigate()
-  useEffect(() => {
-    if (sessionStorage.getItem(S_N_PRINT)) {
-      sessionStorage.removeItem(S_N_PRINT)
-      setTimeout(() => {
-        // print filename
-        const originalTitle = document.title
-        document.title = getBasename(widgets) || originalTitle
-
-        window.addEventListener(
-          'afterprint',
-          () => {
-            document.title = originalTitle
-            navigate(-1)
-          },
-          { once: true },
-        )
-        window.print()
-      }, 16)
-    }
-  }, [navigate, widgets])
 
   const WidgetRenderComponent = (item: WidgetNode) => {
     switch (item.type) {
@@ -89,17 +60,19 @@ const PagePreview = () => {
   }
 
   return (
-    <div className="mx-auto lg:w-[900px] print:w-[900px]">
-      <ul className="print-wrapper">
-        {widgets.map(item => (
-          <li
-            key={item.id}
-            className="flow-root"
-          >
-            <div style={item.data.styleData}>{WidgetRenderComponent(item)}</div>
-          </li>
-        ))}
-      </ul>
+    <div className="bg-zinc-50 lg:min-h-[100vh] lg:py-8">
+      <div className="mx-auto shadow-2xl lg:w-[900px] print:w-[900px]">
+        <ul className="print-wrapper">
+          {widgets.map(item => (
+            <li
+              key={item.id}
+              className="flow-root"
+            >
+              <div style={item.data.styleData}>{WidgetRenderComponent(item)}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

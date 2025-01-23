@@ -79,7 +79,7 @@ const EditHeader = () => {
 
   const handleClickPrint = () => {
     sessionStorage.setItem('PRINT', 'true')
-    navigate('/preview')
+    navigate('/print')
   }
 
   return (

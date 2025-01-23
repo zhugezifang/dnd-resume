@@ -1,5 +1,6 @@
 import { PageEdit } from '@/pages/edit/page.tsx'
 import { PagePreview } from '@/pages/preview/page.tsx'
+import { PagePrint } from '@/pages/print/page.tsx'
 // import App from './app.tsx'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
@@ -26,6 +27,10 @@ createRoot(document.getElementById('root')!).render(
         <Route
           path="/preview"
           element={<PagePreview />}
+        />
+        <Route
+          path="/print"
+          element={<PagePrint />}
         />
       </Routes>
       <Analytics />
