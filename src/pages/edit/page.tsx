@@ -19,9 +19,9 @@ const PageEdit = () => {
       <EditHeader />
       <div className="flex h-[calc(100%-52px)]">
         {/* left materials panel */}
-        <div className="scroll-thin relative h-full w-[200px] flex-shrink-0 overflow-y-auto border-r">
+        <div className="scroll-thin flex h-full w-[200px] flex-shrink-0 flex-col justify-between overflow-y-auto border-r">
           <PanelMaterials />
-          <div className="absolute bottom-4 w-full px-4">
+          <div className="p-4">
             <Select
               onValueChange={setLanguage}
               defaultValue={i18n.language}
