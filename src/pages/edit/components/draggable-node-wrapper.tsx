@@ -1,5 +1,5 @@
 import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
-import { DraggableNode } from '@/pages/edit/draggable-node.tsx'
+import { DraggableNode } from '@/pages/edit/components/draggable-node.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'

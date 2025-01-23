@@ -1,5 +1,5 @@
-import { PageEdit } from '@/pages/page-edit.tsx'
-import { PagePreview } from '@/pages/page-preview.tsx'
+import { PageEdit } from '@/pages/edit/page.tsx'
+import { PagePreview } from '@/pages/preview/page.tsx'
 // import App from './app.tsx'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'

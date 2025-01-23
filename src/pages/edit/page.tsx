@@ -6,10 +6,10 @@ import {
   SelectValue,
 } from '@/components/ui/select.tsx'
 import { setLanguage } from '@/i18n'
-import { EditHeader } from '@/pages/edit/edit-header.tsx'
-import { PanelConfig } from '@/pages/edit/panel-config.tsx'
-import { PanelDnd } from '@/pages/edit/panel-dnd.tsx'
-import { PanelMaterials } from '@/pages/edit/panel-materials.tsx'
+import { EditHeader } from '@/pages/edit/sections/edit-header.tsx'
+import { PanelConfig } from '@/pages/edit/sections/panel-config.tsx'
+import { PanelDnd } from '@/pages/edit/sections/panel-dnd.tsx'
+import { PanelMaterials } from '@/pages/edit/sections/panel-materials.tsx'
 import { useTranslation } from 'react-i18next'
 
 const PageEdit = () => {

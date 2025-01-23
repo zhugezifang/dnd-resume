@@ -9,9 +9,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
-import { widgetsSchema } from '@/components/widgets/widgets-schema'
+} from '@/components/ui/alert-dialog.tsx'
+import { Button } from '@/components/ui/button.tsx'
+import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
 import { getBasename } from '@/components/widgets/widgets-util.tsx'
 import { encodeToBase64Url } from '@/lib/utils.ts'
 import { useWidgetsStore } from '@/store/widgets-store.ts'

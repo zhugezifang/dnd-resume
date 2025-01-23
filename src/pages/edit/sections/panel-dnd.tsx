@@ -1,4 +1,4 @@
-import { DraggableNodeWrapper } from '@/pages/edit/draggable-node-wrapper.tsx'
+import { DraggableNodeWrapper } from '@/pages/edit/components/draggable-node-wrapper.tsx'
 import { useWidgetsStore } from '@/store/widgets-store.ts'
 import {
   closestCenter,
