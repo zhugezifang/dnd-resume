@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input.tsx'
 import { Slider } from '@/components/ui/slider'
 import { AvatarRoundedSelect } from '@/components/widgets/form/avatar/avatar-rounded-select.tsx'
@@ -5,8 +6,11 @@ import { ContactsForm } from '@/components/widgets/form/contacts/contacts-form.t
 import type { BasicInfoData, LinkItemData } from '@/components/widgets/widgets-type.d.ts'
 import { MAX_AVATAR_SIZE, MIN_AVATAR_SIZE } from '@/const/dom.ts'
 import { produce } from 'immer'
+import { Upload } from 'lucide-react'
 import type { ChangeEvent } from 'react'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import invariant from 'tiny-invariant'
 
 const BasicInfoForm = ({
   data,
@@ -28,6 +32,25 @@ const BasicInfoForm = ({
         [name]: value,
       },
     })
+  }
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const handleClickUpload = () => {
+    invariant(fileInputRef.current)
+    fileInputRef.current.click()
+  }
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const objectUrl = URL.createObjectURL(file)
+      onChange({
+        ...data,
+        propsData: {
+          ...propsData,
+          avatarUrl: objectUrl,
+        },
+      })
+    }
   }
 
   const handleAvatarSizeChange = (value: string | number) => {
@@ -71,13 +94,30 @@ const BasicInfoForm = ({
           <span>{t('form.avatarUrl')}</span>
         </div>
         <div className="flex items-center justify-between">
-          <Input
-            className="mr-4 w-32"
-            name="avatarUrl"
-            value={avatarUrl}
-            placeholder={t('form.enterAvatarUrl')}
-            onChange={handleChange}
-          />
+          <div className="flex items-center">
+            <Input
+              className="mr-1 w-32 2xl:mr-2"
+              name="avatarUrl"
+              value={avatarUrl}
+              placeholder={t('form.enterAvatarUrl')}
+              onChange={handleChange}
+            />
+            {/* upload local image */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleClickUpload}
+            >
+              <Upload />
+            </Button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hidden"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+          </div>
           <AvatarRoundedSelect
             url={avatarUrl}
             rounded={avatarRound}
@@ -92,7 +132,7 @@ const BasicInfoForm = ({
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32 shrink-0"
+            className="mr-1 w-32 shrink-0 2xl:mr-2"
             name="avatarSize"
             type="number"
             min={MIN_AVATAR_SIZE}

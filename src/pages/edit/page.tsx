@@ -45,7 +45,7 @@ const PageEdit = () => {
           <PanelDnd />
         </div>
         {/* right config panel */}
-        <div className="scroll-thin h-full w-[281px] flex-shrink-0 overflow-y-auto border-l 2xl:w-[321px]">
+        <div className="scroll-thin h-full w-[292px] flex-shrink-0 overflow-y-auto border-l 2xl:w-[332px]">
           <PanelConfig />
         </div>
       </div>

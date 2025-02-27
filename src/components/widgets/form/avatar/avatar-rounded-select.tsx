@@ -9,7 +9,7 @@ interface AvatarRoundedSelectProps {
 const AvatarRoundedSelect: React.FC<AvatarRoundedSelectProps> = ({ url, rounded, onChange }) => {
   const activeCls = 'z-20 shadow-[0_0_12px_2px_rgba(219,99,39,0.8)]'
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2 2xl:gap-3">
       <button onClick={() => onChange(true)}>
         <img
           src={url}

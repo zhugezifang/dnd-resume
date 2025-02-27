@@ -1,9 +1,12 @@
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input.tsx'
 import { Slider } from '@/components/ui/slider'
 import type { ImageSectionData } from '@/components/widgets/widgets-type.d.ts'
 import { MAX_IMAGE_BR, MAX_IMAGE_SIZE, MIN_IMAGE_BR, MIN_IMAGE_SIZE } from '@/const/dom.ts'
-import type { ChangeEvent } from 'react'
+import { Upload } from 'lucide-react'
+import { useRef, type ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import invariant from 'tiny-invariant'
 
 const ImageSectionForm = ({
   data,
@@ -16,7 +19,7 @@ const ImageSectionForm = ({
   const { propsData } = data
   const { url, imageSize, borderRadius } = propsData
 
-  const handleEventChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
     onChange({
@@ -28,7 +31,29 @@ const ImageSectionForm = ({
     })
   }
 
-  const handleValueChange = (name: keyof ImageSectionData['propsData'], value: string | number) => {
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const handleClickUpload = () => {
+    invariant(fileInputRef.current)
+    fileInputRef.current.click()
+  }
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const objectUrl = URL.createObjectURL(file)
+      onChange({
+        ...data,
+        propsData: {
+          ...propsData,
+          url: objectUrl,
+        },
+      })
+    }
+  }
+
+  const handleNumberChange = (
+    name: keyof ImageSectionData['propsData'],
+    value: string | number,
+  ) => {
     onChange({
       ...data,
       propsData: {
@@ -45,12 +70,30 @@ const ImageSectionForm = ({
         <div className="form-label">
           <span>{t('form.imageUrl')}</span>
         </div>
-        <Input
-          name="url"
-          value={url}
-          placeholder={t('form.enterImageUrl')}
-          onChange={handleEventChange}
-        />
+        <div className="flex items-center gap-2">
+          <Input
+            name="url"
+            value={url}
+            placeholder={t('form.enterImageUrl')}
+            onChange={handleChange}
+          />
+          {/* upload local image */}
+          <Button
+            className="shrink-0"
+            variant="outline"
+            size="icon"
+            onClick={handleClickUpload}
+          >
+            <Upload />
+          </Button>
+          <input
+            type="file"
+            ref={fileInputRef}
+            className="hidden"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+        </div>
       </div>
       {/* Image Size */}
       <div>
@@ -59,20 +102,20 @@ const ImageSectionForm = ({
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32 shrink-0"
+            className="mr-2 w-32 shrink-0"
             name="imageSize"
             type="number"
             min={MIN_IMAGE_SIZE}
             max={MAX_IMAGE_SIZE}
             value={imageSize}
-            onChange={e => handleValueChange('imageSize', e.target.value)}
+            onChange={e => handleNumberChange('imageSize', e.target.value)}
           />
           <Slider
             value={[imageSize]}
             min={MIN_IMAGE_SIZE}
             max={MAX_IMAGE_SIZE}
             step={1}
-            onValueChange={val => handleValueChange('imageSize', val[0])}
+            onValueChange={val => handleNumberChange('imageSize', val[0])}
           />
         </div>
       </div>
@@ -83,20 +126,20 @@ const ImageSectionForm = ({
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32 shrink-0"
+            className="mr-2 w-32 shrink-0"
             type="number"
             name="borderRadius"
             value={borderRadius}
             min={MIN_IMAGE_BR}
             max={MAX_IMAGE_BR}
-            onChange={e => handleValueChange('borderRadius', e.target.value)}
+            onChange={e => handleNumberChange('borderRadius', e.target.value)}
           />
           <Slider
             value={[borderRadius]}
             min={MIN_IMAGE_BR}
             max={MAX_IMAGE_BR}
             step={1}
-            onValueChange={val => handleValueChange('borderRadius', val[0])}
+            onValueChange={val => handleNumberChange('borderRadius', val[0])}
           />
         </div>
       </div>
