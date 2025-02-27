@@ -9,6 +9,14 @@ interface BasicInfoProps {
 const BasicInfo = ({ data }: BasicInfoProps) => {
   const { avatarUrl, avatarSize, avatarRound, name, jobTitle, linksGroup } = data
 
+  const handleImgLoaded = () => {
+    // change favicon to avatarUrl
+    const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement
+    if (link) {
+      link.href = avatarUrl
+    }
+  }
+
   return (
     <div className="flex-center py-5">
       {/* Avatar */}
@@ -20,6 +28,7 @@ const BasicInfo = ({ data }: BasicInfoProps) => {
           height={avatarSize || 100}
           className={clsx('mr-8 sm:mr-16', avatarRound && 'rounded-full')}
           draggable={false}
+          onLoad={handleImgLoaded}
         />
       ) : null}
       <div className="basis-0">
