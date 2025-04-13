@@ -23,7 +23,7 @@ const PanelMaterials = () => {
           <Button
             variant="outline"
             onClick={() => handleClick(item.type)}
-            className="w-full justify-between"
+            className="w-full justify-between has-[>svg]:px-4"
           >
             <span className="flex-center">
               {item.icon}

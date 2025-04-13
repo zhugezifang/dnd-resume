@@ -41,20 +41,14 @@ const EditHeader = () => {
             const importedWidgets = ret.data
             setWidgets(importedWidgets)
             setSelectedId(importedWidgets.length ? importedWidgets[0].id : '')
-            toast.success(t('Successfully imported configuration file'), {
-              position: 'top-center',
-            })
+            toast.success(t('Successfully imported configuration file'))
           } else {
             console.error(ret.error)
-            toast.error(t('message.parseError'), {
-              position: 'top-center',
-            })
+            toast.error(t('message.parseError'))
           }
         } catch (error) {
           console.error(error)
-          toast.error(t('message.parseError'), {
-            position: 'top-center',
-          })
+          toast.error(t('message.parseError'))
         }
       }
       reader.readAsText(file)

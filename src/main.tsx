@@ -14,7 +14,12 @@ import './index.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <Toaster />
+      <Toaster
+        position="top-center"
+        richColors
+        closeButton
+        offset={52}
+      />
       <Routes>
         <Route
           path="/"

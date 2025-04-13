@@ -29,9 +29,7 @@ const useWidgetsStore = create<PageState>()((set, get) => {
     } else {
       console.error(ret.error)
       setTimeout(() => {
-        toast.error(i18n.t('message.parseError'), {
-          position: 'top-center',
-        })
+        toast.error(i18n.t('message.parseError'))
       }, 100)
     }
   } else {

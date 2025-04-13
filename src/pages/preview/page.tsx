@@ -28,18 +28,14 @@ const PagePreview = () => {
         widgets = []
         console.error(ret.error)
         setTimeout(() => {
-          toast.error(i18n.t('message.parameterError'), {
-            position: 'top-center',
-          })
+          toast.error(i18n.t('message.parameterError'))
         }, 100)
       }
     } catch (error) {
       widgets = []
       console.error(error)
       setTimeout(() => {
-        toast.error(i18n.t('message.parameterError'), {
-          position: 'top-center',
-        })
+        toast.error(i18n.t('message.parameterError'))
       }, 100)
     }
   }

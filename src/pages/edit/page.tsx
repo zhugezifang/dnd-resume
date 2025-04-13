@@ -26,15 +26,15 @@ const PageEdit = () => {
               onValueChange={setLanguage}
               defaultValue={i18n.language}
             >
-              <SelectTrigger>
+              <SelectTrigger className="w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="en">
-                  <span className="mr-2">🇺🇸</span>English
+                  <span>🇺🇸</span>English
                 </SelectItem>
                 <SelectItem value="zh">
-                  <span className="mr-2">🇨🇳</span>中文
+                  <span>🇨🇳</span>中文
                 </SelectItem>
               </SelectContent>
             </Select>
