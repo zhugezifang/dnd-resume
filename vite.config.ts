@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
@@ -16,12 +17,20 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     },
   },
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    sentryVitePlugin({
+      org: 'arman-4n',
+      project: 'dnd-resume',
+    }),
+  ],
   build: {
     rollupOptions: {
       output: {
         manualChunks: splitChunks(),
       },
     },
+    sourcemap: true,
   },
 })
