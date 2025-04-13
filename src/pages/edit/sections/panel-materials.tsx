@@ -17,7 +17,7 @@ const PanelMaterials = () => {
     <ul className="flex w-full flex-col p-4">
       {widgetMaterialList.map(item => (
         <li
-          className="mb-3 flex-grow"
+          className="mb-3 grow"
           key={item.type}
         >
           <Button

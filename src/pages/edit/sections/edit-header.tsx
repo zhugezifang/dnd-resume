@@ -83,7 +83,7 @@ const EditHeader = () => {
   }
 
   return (
-    <div className="border-b-10 flex h-[52px] items-center justify-between border-b px-6">
+    <div className="flex h-[52px] items-center justify-between border-b px-6">
       {/* github */}
       <a
         href="https://github.com/Arman19941113/dnd-resume"
