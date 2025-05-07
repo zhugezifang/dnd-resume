@@ -7,6 +7,10 @@ import { splitChunks } from './build/split-chunks.ts'
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    __DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)),
+  },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
