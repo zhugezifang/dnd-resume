@@ -79,17 +79,6 @@ const EditHeader = () => {
   return (
     <div className="flex h-[52px] items-center justify-between border-b px-6">
       {/* github */}
-      <a
-        href="https://github.com/Arman19941113/dnd-resume"
-        target="_blank"
-        className="flex-center"
-      >
-        <LogoGithub
-          width={20}
-          height={20}
-        />
-        <span className="ml-1 text-sm underline">Github</span>
-      </a>
 
       <div className="flex-center gap-4">
         <input

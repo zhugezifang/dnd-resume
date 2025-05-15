@@ -35,10 +35,10 @@ function getDefaultLang() {
 function adaptLanguage(lang: string) {
   if (lang === 'zh') {
     document.documentElement.lang = 'zh-CN'
-    document.title = '在线简历生成工具'
+    document.title = '免费在线简历制作工具'
   } else {
     document.documentElement.lang = 'en'
-    document.title = 'Resume Builder'
+    document.title = 'Free Online Resume Builder'
   }
 }
 
